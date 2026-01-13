@@ -1,6 +1,8 @@
 # ApartmentPredictor-React masterDoc v1
 
-## Summary and Goal
+## Summary
+
+### Goal
 
 > The goal of this phase is to build a **React front-end** that consumes our existing Apartment Predictor **REST API **as documented in **Postman**. 
 
@@ -16,7 +18,7 @@ The `React UI` will provide a clean, responsive view focused on apartment browsi
 
 The result should be an<mark> end-to-end working flow from UI to REST endpoints</mark> (and from there Spring Boot and H2 will implement the BackEnd).
 
-## References
+### References
 
 - Server (BackEnd):
   
@@ -63,8 +65,6 @@ $ tree -L 3
 
 - [apartmentPredictorCRUD](https://documenter.getpostman.com/view/7473960/2sBXVeFs8L)
 
-
-
 Data model:
 
 ```json
@@ -92,11 +92,9 @@ Data model:
 
 ## Code
 
-## Axios
+### Axios
 
 - https://axios-http.com/
-
-
 
 > Axios is a <mark>simple promise based HTTP client for the browser and node.js</mark>. Axios provides a simple to use library in a small package with a very extensible interface.
 
@@ -108,7 +106,7 @@ Using npm:
 $ npm install axios
 ```
 
-## ApartmentList
+### ApartmentList
 
 The `ApartmentLis`t component <mark>fetches apartment data from an API endpoint</mark> (`/api/apartment/getAll`) using `axios`.
 
@@ -187,6 +185,24 @@ export default ApartmentList;
 
 ## package.json
 
+### Dependencies Overview
+
+**Runtime Dependencies:**
+
+- axios (^1.13.2): HTTP client for making API requests to fetch apartment data
+- `react` (^19.2.0): Core React library for building UI components
+- `react-dom` (^19.2.0): Renders React components to the DOM
+
+**Development Dependencies:**
+
+- `@vitejs/plugin-react`: Enables React support in Vite bundler
+- `babel-plugin-react-compiler`: Optimizes React component compilation
+- `eslint` & plugins: Code linting for quality and style enforcement
+- `@types/react`: TypeScript type definitions for React
+- `vite`: Fast development server and build tool replacing Create React App
+
+### Code .json
+
 ```json
 {
   "name": "apartmentpredictor-react",
@@ -222,15 +238,9 @@ export default ApartmentList;
 ## Tech Stack
 
 - IDE: Visual Code Studio
-
-- nvm Node Version Manager 0.39.7: [GitHub - nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)
-
-- NodeJS 22.2.0
-
-- Create project by VITE
-  
+- `nvm` Node Version Manager 0.39.7: [GitHub - nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)
+- `NodeJS 22.2.0`
+- Create project by **VITE**
   - https://vite.dev/ / [Getting Started | Vite](https://vite.dev/guide/)
-  
   - `npm create vite@latest`
-
 - `axios` library
