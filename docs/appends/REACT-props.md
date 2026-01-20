@@ -81,3 +81,97 @@ So when you see:
 name="Katie"     ← correct & beautiful
 age={56}         ← correct & necessary
 ```
+
+## Destructure
+
+> We can destructure the props object either at the component/function parameter level or inside the function before using it. For React props this is just plain JavaScript destructuring.
+
+### Destructure in function parameters
+
+If we have a component like our `<Profile ... />`, we can define it like this:
+
+```jsx
+function Profile({
+  name,
+  age,
+  isVip,
+  maxCapacity,
+  tags,
+  config,
+  onClick,
+  photo,
+  extra,
+}) {
+  // use them directly
+  return (
+    <>
+      <h2>{name}</h2>
+      {isVip && <span>VIP</span>}
+      {extra}
+    </>
+  );
+}
+```
+
+Here the parameter is the props object, and the `{ name, age, ... }` syntax destructures all the individual props into variables.
+
+### Destructure then pass to another function
+
+If we want to pass these props into another function using destructuring:
+
+```jsx
+function handleProfile({
+  name,
+  age,
+  isVip,
+  maxCapacity,
+  tags,
+  config,
+  onClick,
+  photo,
+  extra,
+}) {
+  // do something with the props
+}
+
+function Profile(props) {
+  handleProfile(props); // or:
+  // handleProfile({ name, age, ...rest }) after destructuring below
+  return null;
+}
+```
+
+Or destructure first, then call:
+
+```jsx
+function Profile(props) {
+  const {
+    name,
+    age,
+    isVip,
+    maxCapacity,
+    tags,
+    config,
+    onClick,
+    photo,
+    extra,
+  } = props;
+
+  someFn({ name, age, isVip, tags }); // pass only what you want
+  return null;
+}
+```
+
+## Destructure with rest props
+
+If we want some props individually and “the rest” bundled:
+
+```jsx
+function Profile({ name, age, isVip, ...rest }) {
+  // rest contains maxCapacity, tags, config, onClick, photo, extra
+  anotherFn(rest);
+  return <div>{name}</div>;
+}
+```
+
+This pattern is common when we want to forward unknown props to a child component or element.
