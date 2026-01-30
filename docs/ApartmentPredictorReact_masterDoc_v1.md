@@ -266,6 +266,10 @@ const ApartmentList = () => {
 
 **Result**: Logic reusable, View testable with props, Container minimal.
 
+## Button refresh
+
+- [Button refresh](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/appends/REACT-reaload.md)
+
 ## package.json
 
 ### Dependencies Overview
