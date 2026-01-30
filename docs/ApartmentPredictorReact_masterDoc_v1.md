@@ -268,7 +268,7 @@ const ApartmentList = () => {
 
 ## Button refresh
 
-- [Button refresh](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/appends/REACT-reaload.md)
+- [Button refresh](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/feature-reload/docs/appends/REACT-reaload.md)
 
 ## package.json
 
