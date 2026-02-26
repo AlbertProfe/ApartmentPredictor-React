@@ -1,4 +1,4 @@
-# ApartmentPredictor-React masterDoc v1
+# ApartmentPredictor-React masterDoc v2
 
 ## Summary
 
@@ -32,11 +32,12 @@ todo
 - CodeSandbox:
   
   - [Traffic Lights](https://codesandbox.io/p/sandbox/7f8ffd) / [Scientists Gallery 5](https://codesandbox.io/p/devbox/scientistsgallery4-forked-94z8k7)
+  - Praga-CRUD: [1](https://codesandbox.io/p/devbox/react-dev-forked-cmrdn2) - [2](https://codesandbox.io/p/devbox/task-crud-forked-9dxyd5?workspaceId=ws_UM9jK6QFKQoLTL71feVrD1) - [3](https://codesandbox.io/p/devbox/task-crud-2-forked-l72dzj?workspaceId=ws_UM9jK6QFKQoLTL71feVrD1) - [4](https://codesandbox.io/p/sandbox/imagelarge-context-1-46rlf4)  / [imageSizeContext](https://codesandbox.io/p/sandbox/wjylz5)
 
 - React:
   
-  - [Describing the UI](https://react.dev/learn/describing-the-ui) / [Adding Interactivity](https://react.dev/learn/adding-interactivity)
-  - [Custom Hooks](https://albertprofe.dev/reactjs/reactjs-hook-custom.html) / [useEffect](https://albertprofe.dev/reactjs/reactjs-hook-effect.html) / [useState](https://albertprofe.dev/reactjs/reactjs-hook-state.html)
+  - [Describing the UI](https://react.dev/learn/describing-the-ui) / [Adding Interactivity](https://react.dev/learn/adding-interactivity) / [Managing the state](https://react.dev/learn/managing-state)
+  - [Custom Hooks](https://albertprofe.dev/reactjs/reactjs-hook-custom.html) / [useEffect](https://albertprofe.dev/reactjs/reactjs-hook-effect.html) / [useState](https://albertprofe.dev/reactjs/reactjs-hook-state.html) / [useReducer]([React JS: useReducer – albertprofe wiki](https://albertprofe.dev/reactjs/reactjs-hook-reducer.html)) / [useContext]([React JS: useContext – albertprofe wiki](https://albertprofe.dev/reactjs/reactjs-hook-context.html))
 
 - Labs:
   
@@ -66,13 +67,13 @@ $ tree
 5 directories, 8 files
 ```
 
-## DATA REST endpoint
+## Data model
+
+DATA REST <mark>endpoint</mark>
 
 - [apartmentPredictorCRUD](https://documenter.getpostman.com/view/7473960/2sBXVeFs8L)
 
-## Data model
-
-Apartment JSON:
+`Apartment` JSON:
 
 ```json
 {
@@ -153,9 +154,9 @@ Apartment JSON:
 }
 ```
 
+**Node/Component tree**: product goal
 
-
-![](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/diagrams/TREE-ApartmentPredictor_v2.png)
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2.png)
 
 ## Code
 
@@ -163,13 +164,9 @@ TODO
 
 ### Axios
 
-- https://axios-http.com/
-
 > Axios is a <mark>simple promise based HTTP client for the browser and node.js</mark>. Axios provides a simple to use library in a small package with a very extensible interface.
 
-Installing
-
-Using npm:
+Installing, using npm:
 
 ```
 $ npm install axios
