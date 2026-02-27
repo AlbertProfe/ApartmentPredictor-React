@@ -37,13 +37,14 @@ todo
 - React:
   
   - [Describing the UI](https://react.dev/learn/describing-the-ui) / [Adding Interactivity](https://react.dev/learn/adding-interactivity) / [Managing the state](https://react.dev/learn/managing-state)
-  - [Custom Hooks](https://albertprofe.dev/reactjs/reactjs-hook-custom.html) / [useEffect](https://albertprofe.dev/reactjs/reactjs-hook-effect.html) / [useState](https://albertprofe.dev/reactjs/reactjs-hook-state.html) / [useReducer]([React JS: useReducer – albertprofe wiki](https://albertprofe.dev/reactjs/reactjs-hook-reducer.html)) / [useContext]([React JS: useContext – albertprofe wiki](https://albertprofe.dev/reactjs/reactjs-hook-context.html))
+  - [Custom Hooks](https://albertprofe.dev/reactjs/reactjs-hook-custom.html) / [useEffect](https://albertprofe.dev/reactjs/reactjs-hook-effect.html) / [useState](https://albertprofe.dev/reactjs/reactjs-hook-state.html) / [useReducer](https://albertprofe.dev/reactjs/reactjs-hook-reducer.html) / [useContext](https://albertprofe.dev/reactjs/reactjs-hook-context.html)
 
 - Labs:
   
-  - [Lab#RE07-1: traffic lights simulation – albertprofe wiki](https://albertprofe.dev/reactjs/rjslab7-1.html)
-  - [Lab#RE01-1: API Rest Axios – albertprofe wiki](https://albertprofe.dev/reactjs/rjslab1.html)
-  - [Lab#RE06-1: healthyFood Restaurant – albertprofe wiki](https://albertprofe.dev/reactjs/rjslab6-1.html)
+  - [Lab#RE07-1: traffic lights simulation](https://albertprofe.dev/reactjs/rjslab7-1.html)
+  - [Lab#RE01-1: API Rest Axios](https://albertprofe.dev/reactjs/rjslab1.html)
+  - [Lab#RE06-1: healthyFood Restaurant](https://albertprofe.dev/reactjs/rjslab6-1.html)
+  - **mathsWeb**: [mathsWeb: repo](https://github.com/AlbertProfe/mathsWeb) /  [mathsWeb: deployed](https://mathswebspace.netlify.app/)
 
 ## Project Structure
 
