@@ -1,4 +1,4 @@
-# Lab#02: Think in React Part I
+# Lab#02: Think in React Part, Amazon
 
 ## Summary
 
