@@ -4,7 +4,6 @@
 
 Forum Thread / Discussion Preview Row Variants
 
-
 References
 
 - [React Principles](/reactjs/reactjs-what-principles.qmd)
@@ -41,8 +40,6 @@ References
 
 6. Composition: `SubredditFeed` parent with 5 threads.
 
-
-
 ### Variant 13 – Stack Overflow / Dev Forum Question Row
 
 **Visual goal per row:**
@@ -71,18 +68,16 @@ References
 
 6. Composition: `ReactQuestions` parent with 4–6 rows.
 
-
-
 ### Variant 14 – Indie Hacker / Product Hunt Launch Thread Preview
 
 **Visual goal per row:**
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│ 🚀  Notion Template Marketplace – launched today!            │
-│ +89 upvotes   12 comments   by @sideprojectguy               │
+│ 🚀  Notion Template Marketplace – launched today!             │
+│ +89 upvotes   12 comments   by @sideprojectguy                │
 │ "Sell & discover beautiful Notion templates"                  │
-│ [Upvote ▲]  [Comment]  [Save]  [Visit product]               │
+│ [Upvote ▲]  [Comment]  [Save]  [Visit product]                │
 └───────────────────────────────────────────────────────────────┘
 ```
 
@@ -100,8 +95,6 @@ References
    → "Upvote" button increases by 1 (local only) + disables after one click
 
 6. Composition: `TodayLaunches` parent with 5 entries.
-
-
 
 ### Variant 15 – Classic Forum Thread Row (phpBB / vBulletin style)
 
