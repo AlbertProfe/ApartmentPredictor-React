@@ -24,7 +24,7 @@ We will also create a **modern middleware**:
 
 - shared via a <mark>context and custom hooks</mark> to where **data** is needed.
 
-## Product Goal
+### Product Goal
 
 > The **ApartmentPredictor** project aims to build a modern, intelligent real-estate platform that evolves from a simple apartment listings viewer into a comprehensive property management and prediction system. I
 
@@ -67,26 +67,26 @@ The final product integrates geospatial visualization with interactive maps, con
 ## Project Structure
 
 ```textile
-[Fri Jan 30 08:26:09] albert@albert-VirtualBox:~/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src (master)
+[Tue Mar 03 12:51:48] albert@albert-VirtualBox:~/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src (master)
 $ tree
 .
 ├── apartment
-│   └── ApartmentList.jsx
+│   └── ApartmentList.jsx
 ├── App.css
 ├── App.jsx
 ├── assets
-│   └── react.svg
+│   └── react.svg
 ├── data
-│   └── useApartments.jsx
+│   └── useApartments.jsx
 ├── index.css
 ├── main.jsx
 └── view
     └── ApartmentListView.jsx
 
 5 directories, 8 files
-```
-
 **Node/Component tree**: product goal
+
+```
 
 ![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
 
@@ -188,8 +188,6 @@ Installing, using npm:
 ```
 $ npm install axios
 ```
-
-
 
 ### useContext vs. custom hook
 
@@ -326,7 +324,7 @@ Now `useUser` is a custom hook, but it reads from `Context`, so every component 
 
 - Avoid using a `custom hook` with internal `useState` for “shared” data unless you back it with `Context` or some other global store; otherwise you’ll get multiple independent fetches and inconsistent views.
 
-### Axios-Service/Context api
+### Middleware: Axios-Service/Context-customs hooks
 
 - [Axios/context api](https://github.com/AlbertProfe/userBorrowBookFront/blob/master/docs/axios-async/axios-context-book.md)
 
@@ -388,6 +386,12 @@ Here is a clean **summary of the 4 steps** to use **React Context** with an **AP
 > **Quick mental checklist**: 
 > 
 > Service → Context + Hook + Provider → Wrap app → Use hook in components.
+
+
+
+### Apartment Middleware Data provider
+
+todo
 
 ## package.json
 
