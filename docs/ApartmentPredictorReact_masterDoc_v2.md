@@ -22,8 +22,6 @@ The result should be an<mark> end-to-end working flow from UI to REST endpoints<
 
 Version 2 expands the backend into a rich domain model with full **CRUD** for apartments and relations (Schools, Property Contracts, Reviews, Owners, Reviewers), while frontend gains detailed forms and relational views.
 
-
-
 ### References
 
 - Server (BackEnd):
@@ -161,7 +159,7 @@ DATA REST <mark>endpoint</mark>
 
 **Node/Component tree**: product goal
 
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2.png)
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
 
 ### Axios
 
@@ -174,8 +172,6 @@ $ npm install axios
 ```
 
 todo
-
-
 
 ## Data Provider: middleware
 
@@ -228,7 +224,6 @@ function Profile() {
   const user = useContext(UserContext);
   return <div>{user?.name}</div>;
 }
-
 ```
 
 #### What a custom hook is for
@@ -259,7 +254,6 @@ function Profile() {
 function Sidebar() {
   const user = useUser(); // another, separate instance
 }
- 
 ```
 
 Here, `Profile` and `Sidebar` will fetch independently; they do **not** share the same user state. If you want them to share, you must introduce a shared store: 
@@ -270,7 +264,7 @@ Here, `Profile` and `Sidebar` will fetch independently; they do **not** share th
 
 - or some in‑memory cache you manage.
 
-## How they work together in practice
+### How they work together in practice
 
 The common pattern is:
 
@@ -304,7 +298,6 @@ function useUser() {
 function Profile() {
   const { user } = useUser(); // shared instance
 }
-
 ```
 
 Now `useUser` is a custom hook, but it reads from `Context`, so every component that uses `useUser` shares the same Axios‑backed data.
@@ -317,7 +310,7 @@ Now `useUser` is a custom hook, but it reads from `Context`, so every component 
 
 - Avoid using a `custom hook` with internal `useState` for “shared” data unless you back it with `Context` or some other global store; otherwise you’ll get multiple independent fetches and inconsistent views.
 
-## Axios/context api
+### Axios-Service/Context api
 
 - [Axios/context api]([userBorrowBookFront/docs/axios-async/axios-context-book.md at master · AlbertProfe/userBorrowBookFront · GitHub](https://github.com/AlbertProfe/userBorrowBookFront/blob/master/docs/axios-async/axios-context-book.md))
 
@@ -336,8 +329,6 @@ This service object is then provided via **React Context** at the top of the com
 - Avoids duplication and keeps components focused on UI logic
 
 > Ideal for medium to large React apps needing reliable, maintainable HTTP communication.
-
-
 
 ![](https://raw.githubusercontent.com/AlbertProfe/userBorrowBookFront/refs/heads/master/docs/axios-async/axios_context%20api%20-%20visual%20selection%20(copy).png)
 
