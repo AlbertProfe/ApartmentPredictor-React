@@ -2,9 +2,9 @@
 
 ## Summary
 
-### Goal
+### Version Goal
 
-> The goal of this phase is to build a **React front-end** that consumes our existing Apartment Predictor **REST API as documented in Postman**. 
+> The goal of this phase is to build a **React front-end** that consumes our existing Apartment Predictor **REST API as documented in Postman**, implement CRUD operations and a modern **middleware api**. 
 
 The backend will run locally as a packaged Spring Boot application executed with `java -jar <server>.jar`, and the React application will communicate with it via **Axios** HTTP calls. 
 
@@ -18,9 +18,25 @@ The `React UI` will provide a clean, responsive view focused on apartment browsi
 
 The result should be an<mark> end-to-end working flow from UI to REST endpoints</mark> (and from there Spring Boot and H2 will implement the BackEnd).
 
-## Version Goal
+We will also create a **modern middleware**:  
 
-Version 2 expands the backend into a rich domain model with full **CRUD** for apartments and relations (Schools, Property Contracts, Reviews, Owners, Reviewers), while frontend gains detailed forms and relational views.
+- a <mark>single service object containing all Axios-based methods</mark> (get, post, put, delete, etc.) wiht and `.env` file to store `beseURL` enpoint data.
+
+- shared via a <mark>context and custom hooks</mark> to where **data** is needed.
+
+## Product Goal
+
+> The **ApartmentPredictor** project aims to build a modern, intelligent real-estate platform that evolves from a simple apartment listings viewer into a comprehensive property management and prediction system. I
+
+ts goal is to provide users with a seamless experience to browse, manage, and analyze real-estate data through a polished `React` frontend and a robust `Spring Boot` backend. 
+
+As the platform grows, it introduces secure `AWS Cognito authentication`, `Stripe`-powered monetization, and AI-driven predictive analytics for rent and sale pricing. 
+
+The final product integrates geospatial visualization with interactive maps, contract insights, and school proximity data, creating a rich, data-informed marketplace for both buyers and property managers. 
+
+> Designed with scalability, usability, and cloud readiness in mind, 
+
+**ApartmentPredictor** combines modern web design, cloud integration, and machine learning to deliver a complete, user-centric solution for exploring, valuing, and managing apartments intelligently.
 
 ### References
 
@@ -69,6 +85,10 @@ $ tree
 
 5 directories, 8 files
 ```
+
+**Node/Component tree**: product goal
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
 
 ## Data model
 
@@ -157,9 +177,7 @@ DATA REST <mark>endpoint</mark>
 }
 ```
 
-**Node/Component tree**: product goal
-
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
+## Data Provider: middleware
 
 ### Axios
 
@@ -171,9 +189,7 @@ Installing, using npm:
 $ npm install axios
 ```
 
-todo
 
-## Data Provider: middleware
 
 ### useContext vs. custom hook
 
@@ -312,7 +328,7 @@ Now `useUser` is a custom hook, but it reads from `Context`, so every component 
 
 ### Axios-Service/Context api
 
-- [Axios/context api]([userBorrowBookFront/docs/axios-async/axios-context-book.md at master · AlbertProfe/userBorrowBookFront · GitHub](https://github.com/AlbertProfe/userBorrowBookFront/blob/master/docs/axios-async/axios-context-book.md))
+- [Axios/context api](https://github.com/AlbertProfe/userBorrowBookFront/blob/master/docs/axios-async/axios-context-book.md)
 
 > **The Context + Axios Service Middleware pattern** is a clean, scalable way to manage API calls in React applications.
 
