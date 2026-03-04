@@ -1,4 +1,4 @@
-import ApartmentList from "./apartment/ApartmentList";
+import Apartment from "./apartment/Apartment";
 import "./App.css";
 
 export default function App() {
@@ -6,7 +6,7 @@ export default function App() {
     <div className="App">
       <h1>Welcome to the Apartment Predictor</h1>
       <p>Use the navigation to explore available apartments.</p>
-      <ApartmentList />
+      <Apartment />
     </div>
   );
 }
