@@ -1,7 +1,7 @@
 // src/apartment/ApartmentList.jsx
 import { useEffect, useState } from "react";
 import { useApartmentService } from "../middleware/apartmentServiceHooks";
-import ApartmentListView from "../view/ApartmentListView";
+import ApartmentListView from "./ApartmentListView";
 
 const ApartmentList = () => {
   const apartmentService = useApartmentService();
