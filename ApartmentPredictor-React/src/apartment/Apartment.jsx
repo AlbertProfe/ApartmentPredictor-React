@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ApartmentForm from "./ApartmentForm";
+import ApartmentForm from "../components/ApartmentForm";
 import ApartmentList from "./ApartmentList";
 
 const Apartment = () => {

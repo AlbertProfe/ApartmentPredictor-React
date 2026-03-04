@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import ApartmentForm from "../apartment/ApartmentForm";
+import ApartmentForm from "../components/ApartmentForm";
 import ApartmentListContainer from "./ApartmentListContainer";
 import ApartmentDetail from "./ApartmentDetail";
 
