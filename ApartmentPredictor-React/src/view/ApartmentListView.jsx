@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import ApartmentForm from "../apartment/ApartmentForm";
+import ApartmentListContainer from "./ApartmentListContainer";
 
 const ApartmentListView = ({ apartments, isLoading, isAxiosError, onRefresh }) => {
   const [selectedApartment, setSelectedApartment] = useState(null);
@@ -111,71 +112,13 @@ const ApartmentListView = ({ apartments, isLoading, isAxiosError, onRefresh }) =
         </div>
       )}
 
-      <ul className="apartment-list">
-        {// Map through apartments and display their details
-        // Each apartment is rendered as a list item with key as apartment.id
-        // The details include price, area, bedrooms, bathrooms, stories, and features
-        }
-        {apartments.map((apartment) => (
-          <li key={apartment.id} className="apartment-item">
-            <div className="apartment-header">
-              ID: {apartment.id} | ${apartment.price}
-            </div>
-
-            <div className="apartment-grid">
-              <div>
-                <strong>Area:</strong> {apartment.area} sq ft
-              </div>
-              <div>
-                <strong>Bedrooms:</strong> {apartment.bedrooms}
-              </div>
-              <div>
-                <strong>Bathrooms:</strong> {apartment.bathrooms}
-              </div>
-              <div>
-                <strong>Stories:</strong> {apartment.stories}
-              </div>
-            </div>
-
-            <div className="apartment-features">
-              <span>Main Road: {apartment.mainroad}</span>
-              <span>Parking: {apartment.parking}</span>
-              <span>Guestroom: {apartment.guestroom}</span>
-              <span>Basement: {apartment.basement}</span>
-            </div>
-
-            <div className="apartment-meta">
-              Hot Water: {apartment.hotwaterheating} | AC:{" "}
-              {apartment.airconditioning} | Pref Area: {apartment.prefarea} |
-              Furnishing: {apartment.furnishingstatus}
-            </div>
-
-            <div className="apartment-actions">
-              <button 
-                onClick={() => handleDetail(apartment)} 
-                className="detail-btn"
-                disabled={isDeleting}
-              >
-                Detail
-              </button>
-              <button 
-                onClick={() => handleUpdate(apartment)} 
-                className="update-btn"
-                disabled={isDeleting}
-              >
-                Update
-              </button>
-              <button 
-                onClick={() => handleDelete(apartment.id)} 
-                className="delete-btn"
-                disabled={isDeleting}
-              >
-                {isDeleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <ApartmentListContainer 
+        apartments={apartments}
+        onDetail={handleDetail}
+        onUpdate={handleUpdate}
+        onDelete={handleDelete}
+        isDeleting={isDeleting}
+      />
     </>
   );
 };

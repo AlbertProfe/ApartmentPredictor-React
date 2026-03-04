@@ -30,8 +30,10 @@ export const useApartments = (refreshTrigger) => {
   };
 
   useEffect(() => {
-    // Call the function to
-    fetchApartments();
+    const fetchData = async () => {
+      await fetchApartments();
+    };
+    fetchData();
   }, [refreshTrigger]);
 
   // Return the apartments data, loading status, error status, and refetch function
