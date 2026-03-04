@@ -20,9 +20,9 @@ The result should be an<mark> end-to-end working flow from UI to REST endpoints<
 
 We will also create a **modern middleware**:  
 
-- a <mark>single service object containing all Axios-based methods</mark> (get, post, put, delete, etc.) wiht and `.env` file to store `beseURL` enpoint data.
+- a <mark>single service object containing all Axios-based methods</mark> (get, post, put, delete, etc.) importing sensitive data from an `.env` file (where we will store `beseURL` enpoint data).
 
-- shared via a <mark>context and custom hooks</mark> to where **data** is needed.
+- shared via a <mark>context and custom hooks</mark> to decouple API from components and allow componets to consume **data**  when is needed.
 
 ### Product Goal
 
@@ -329,6 +329,8 @@ Now `useUser` is a custom hook, but it reads from `Context`, so every component 
 
 > **The Context + Axios Service Middleware pattern** is a clean, scalable way to manage API calls in React applications.
 
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/UML-ApartmentPredictor_v2-Middleware.png)
+
 We create a <mark>single service object</mark> containing all `Axios-based` methods (`get`, `post`, `put`, `delete`, etc.), often with shared configuration such as baseURL, headers, interceptors for authentication (JWT), global error handling, request logging, or retry logic.
 
 This service object is then provided via **React Context** at the top of the component tree using a `Provider` component. <mark>Components consume it</mark> through a custom hook (e.g. `useApi()`), gaining access to the same centralized, configured `Axios` instance without prop drilling or repeated imports.
@@ -348,18 +350,32 @@ This service object is then provided via **React Context** at the top of the com
 Here is a clean **summary of the 4 steps** to use **React Context** with an **API service** (axios-based) to buid a middleware:
 
 1. **Create the API service object**  
-   Define a plain JavaScript object (e.g. `BookService` or `ApiService`) that contains all your API methods using **axios** (`getAllBooks`, `createBook`, `updateBook`, `deleteBook`, etc.).  
+   
+   Define a plain JavaScript object (e.g. `BookService` or `ApiService`) that contains all our API methods using **axios** (`getAllBooks`, `createBook`, `updateBook`, `deleteBook`, etc.).  
    Export this object as the default export.  
-   → This is your reusable service layer, independent of React.
+   → This is our reusable service layer, independent of React.
 
 2. **Create Context + Provider + Custom Hook**  
    
-   - Use `React.createContext()` and pass your service object as the **default value**.  
+   - Use `React.createContext()` and pass our service object (API service objec) as the **default value**.  
    - Create a **custom hook** (`useBookService` / `useApiService`) that calls `useContext()`.  
    - Create a **Provider component** (`BookServiceProvider`) that wraps children and provides the service object via `<Context.Provider value={BookService}>`.  
-     → All three (Context, hook, provider) usually live in the same file as the service.
+     → All three (`Context`, `hook`, `provider`) usually live in the same file as the `service`, and it is a [good practice](https://github.com/facebook/react/issues/17912)
+     Example:
+   
+   ```jsx
+    // BookServiceProvider component
+    export const BookServiceProvider = ({ children }) => {
+          return (
+            <BookServiceContext.Provider value={BookService}>
+                  {children}
+            </BookServiceContext.Provider>
+          );
+    };
+   ```
 
 3. **Wrap your application (or relevant subtree) with the Provider**  
+   
    Place `<BookServiceProvider>` (or `ApiServiceProvider`) high in the component tree — most commonly around `<App>` or the main content.  
    Example:
    
@@ -375,21 +391,25 @@ Here is a clean **summary of the 4 steps** to use **React Context** with an **AP
    → This makes the service available to all descendant components.
 
 4. **Consume the service in any component using the custom hook**  
+   
    Inside any component that needs API calls:  
    
    - Call the custom hook: `const bookService = useBookService()`  
-   - Use the methods directly: `await bookService.getAllBooks()`, etc.  
+   - cUse the methods directly: `await bookService.getAllBooks()`, etc.  
    - Typically combined with `useState` + `useEffect` for data fetching.  
      → No prop drilling, clean access anywhere below the provider.
 
-
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/UML-ApartmentPredictor_v2-Middleware.png)
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/UML-ApartmentPredictor_v2-Middleware-2.png)
 
 > **Quick mental checklist**: 
 > 
 > Service → Context + Hook + Provider → Wrap app → Use hook in components.
 
-### Apartment Middleware Data provider
+## Apartment Middleware Data provider
+
+todo
+
+## CRUD Apartment
 
 todo
 

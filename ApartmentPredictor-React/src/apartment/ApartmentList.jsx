@@ -1,13 +1,30 @@
 // src/apartment/ApartmentList.jsx
-import { useApartments } from "../data/useApartments";
+import { useEffect, useState } from "react";
+import { useApartmentService } from "../middleware/apartmentServiceHooks";
 import ApartmentListView from "../view/ApartmentListView";
 
 const ApartmentList = () => {
-  // Use the custom hook to get apartments data and states
-  // we use destructuring assignment to extract the values
-  const { apartments, isLoading, isAxiosError } = useApartments();
+  const apartmentService = useApartmentService();
+  const [apartments, setApartments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAxiosError, setIsAxiosError] = useState(false);
 
-  // Render the ApartmentListView with the fetched data and states
+  useEffect(() => {
+    async function fetchApartments() {
+      try {
+        const data = await apartmentService.getAllApartments();
+        setApartments(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch apartments:", error);
+        setIsAxiosError(error.isAxiosError || false);
+        setIsLoading(false);
+      }
+    }
+
+    fetchApartments();
+  }, [apartmentService]);
+
   return (
     <ApartmentListView
       apartments={apartments}
