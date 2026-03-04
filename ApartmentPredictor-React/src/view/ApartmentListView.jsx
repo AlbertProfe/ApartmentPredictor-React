@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ApartmentForm from "../apartment/ApartmentForm";
 import ApartmentListContainer from "./ApartmentListContainer";
+import ApartmentDetail from "./ApartmentDetail";
 
 const ApartmentListView = ({ apartments, isLoading, isAxiosError, onRefresh }) => {
   const [selectedApartment, setSelectedApartment] = useState(null);
@@ -90,26 +91,10 @@ const ApartmentListView = ({ apartments, isLoading, isAxiosError, onRefresh }) =
       )}
 
       {showDetail && selectedApartment && (
-        <div className="detail-container">
-          <h2>Apartment Details</h2>
-          <div className="apartment-detail">
-            <p><strong>ID:</strong> {selectedApartment.id}</p>
-            <p><strong>Price:</strong> ${selectedApartment.price}</p>
-            <p><strong>Area:</strong> {selectedApartment.area} sq ft</p>
-            <p><strong>Bedrooms:</strong> {selectedApartment.bedrooms}</p>
-            <p><strong>Bathrooms:</strong> {selectedApartment.bathrooms}</p>
-            <p><strong>Stories:</strong> {selectedApartment.stories}</p>
-            <p><strong>Main Road:</strong> {selectedApartment.mainroad ? "Yes" : "No"}</p>
-            <p><strong>Parking:</strong> {selectedApartment.parking ? "Yes" : "No"}</p>
-            <p><strong>Guest Room:</strong> {selectedApartment.guestroom ? "Yes" : "No"}</p>
-            <p><strong>Basement:</strong> {selectedApartment.basement ? "Yes" : "No"}</p>
-            <p><strong>Hot Water Heating:</strong> {selectedApartment.hotwaterheating ? "Yes" : "No"}</p>
-            <p><strong>Air Conditioning:</strong> {selectedApartment.airconditioning ? "Yes" : "No"}</p>
-            <p><strong>Preferred Area:</strong> {selectedApartment.prefarea ? "Yes" : "No"}</p>
-            <p><strong>Furnishing Status:</strong> {selectedApartment.furnishingstatus}</p>
-          </div>
-          <button onClick={handleCancel} className="close-btn">Close</button>
-        </div>
+        <ApartmentDetail 
+          apartment={selectedApartment} 
+          onClose={handleCancel}
+        />
       )}
 
       <ApartmentListContainer 
