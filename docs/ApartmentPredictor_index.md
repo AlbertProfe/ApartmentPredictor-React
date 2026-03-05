@@ -33,6 +33,7 @@ Quick Evolution Summary
 - **v2** → Backend becomes rich domain model with relations
   - [ApartmentPredictor-React/docs/ApartmentPredictorReact_masterDoc_v2](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/ApartmentPredictorReact_masterDoc_v2.md)
 - **v3** → UI/UX jump: professional look + shared global state
+  - [ApartmentPredictor-React/docs/ApartmentPredictorReact_masterDoc_v3](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/ApartmentPredictorReact_masterDoc_v3.md)
 - **v4** → Production readiness: real user management & protection
 - **v5** → Business model: payments / monetization
 - **v6** → Intelligence layer: AI prediction (Java-based ML)
