@@ -342,7 +342,7 @@ This service object is then provided via **React Context** at the top of the com
 
 **Key benefits**:
 
-- Single place for` auth tokens`, interceptors, and error/toast handling
+- Single place for `auth tokens`, interceptors, and error/toast handling
 - Consistent `API` behavior across the entire app
 - Easy testing (mock the service via Provider)
 - Simple to evolve later (swap Axios → fetch, TanStack Query, etc.)
@@ -413,11 +413,50 @@ Here is a clean **summary of the 4 steps** to use **React Context** with an **AP
 
 ## Apartment Middleware Data provider
 
-todo
+- [GitHub - AlbertProfe/ApartmentPredictor-React at v2-api · GitHub](https://github.com/AlbertProfe/ApartmentPredictor-React/tree/v2-api)
+
+> We successfully <mark>refactored the apartment data fetching system</mark> from a traditional custom hook to a **modern middleware architecture** using React Context and custom hooks. 
+> 
+> The implementation follows best practices for separation of concerns and dependency injection.
+
+### Architecture Overview
+
+The new architecture consists of three key components:
+
+**API Service Layer** ([apartmentApiService.js](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/middleware/apartmentApiService.js:0:0-0:0)) - A pure service object containing all axios-based API calls, completely isolated from React. This layer handles HTTP requests, error handling, and data transformation without any UI dependencies.
+
+**Context Provider** ([apartmentService.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/middleware/apartmentService.jsx:0:0-0:0)) - React Context wrapper that creates a global service instance accessible throughout the application. The provider uses `createContext` and `useContext` hooks to expose the API service via a custom hook.
+
+**Custom Hook** ([apartmentServiceHooks.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/middleware/apartmentServiceHooks.jsx:0:0-0:0)) - Provides a clean interface for components to access the API service through context, enabling easy testing and mocking.
+
+### Key Benefits
+
+This architecture achieves several important improvements:
+
+**Separation of Concerns** - API logic is completely decoupled from component logic, making the codebase more maintainable and testable.
+
+**Global Access** - Any component can now access the apartment API service without prop drilling or importing services directly.
+
+**Easy Testing** - The service can be easily mocked in tests by providing a different context value.
+
+**Scalability** - New API methods can be added to the service layer without modifying components.
+
+### Migration Process
+
+The <mark>migration</mark> involved:
+
+- extracting API logic from the legacy [useApartments](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/data/useApartments.jsx:3:0-38:2) hook, 
+- creating the `context` `provider`,
+- <mark>wrapping</mark> the application with the provider,
+- and updating components to use the new [useApartmentService](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/middleware/apartmentService.jsx:6:0-7:77) hook. 
+
+> The old hook was safely removed as it's no longer needed.
+
+- [Step-by-Step Guide: Refactoring to Context-Based API Architecture](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/appends/REACT-middleware.md)   
 
 ## CRUD Apartment
 
-todo
+- [GitHub - AlbertProfe/ApartmentPredictor-React at v2-crud · GitHub](https://github.com/AlbertProfe/ApartmentPredictor-React/tree/v2-crud)
 
 ## package.json
 
