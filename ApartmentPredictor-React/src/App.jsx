@@ -1,16 +1,12 @@
-import ApartmentPage from "./pages/ApartmentPage";
-import apartmentNewYork from "./assets/apartmentNewYork.jpg";
+
+import Init from "./Init";
 import "./App.css";
+import { ApartmentServiceProvider } from "./middleware/apartmentService";
 
 export default function App() {
   return (
-    <div className="App">
-        <h1>Welcome to the Apartment Predictor</h1>
-      <div className="header-image">
-        <img src={apartmentNewYork} alt="New York Apartment" />
-      </div>
-      <p>Use the navigation to explore available apartments.</p>
-      <ApartmentPage />
-    </div>
+      <ApartmentServiceProvider>
+        <Init />
+      </ApartmentServiceProvider>
   );
 }
