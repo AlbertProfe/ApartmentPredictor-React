@@ -75,6 +75,10 @@ $ tree
 ├── navigation
 ├── themes
 └── pages
+    ├── HomePage.jsx
+    ├── PropertyPage.jsx
+    ├── MapPage.jsx
+    ├── PredictorPage.jsx
     └── ApartmentPage.jsx
 
 10 directories, 13 files
@@ -82,7 +86,7 @@ $ tree
 
 **Node/Component tree**: product goal
 
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v3.png)
 
 ## Data model
 
