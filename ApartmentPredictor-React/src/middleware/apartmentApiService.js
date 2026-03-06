@@ -6,6 +6,12 @@ const ApartmentApiService = {
   getAllApartments: async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/getAll`);
+      console.log("API Response:", response);
+      console.log("Apartments Data:", response.data);
+      console.log("First Apartment:", response.data[0]);
+      console.log("Headers", response.headers);
+      console.log("Headers date", response.headers.date);
+      console.log("Status", response.status);
       return response.data;
     } catch (error) {
       console.error("Error fetching apartments:", error);

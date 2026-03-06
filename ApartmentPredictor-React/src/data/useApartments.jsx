@@ -1,25 +1,21 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useApartmentService } from "../middleware/apartmentServiceHooks";
 
 export const useApartments = (refreshTrigger) => {
   // State to hold apartments data, loading status, and error status
   const [apartments, setApartments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAxiosError, setIsAxiosError] = useState(false);
+  
+  // Use the custom hook to get the apartment service
+  const apartmentService = useApartmentService();
 
   // Fetch apartments data from the API
   // and handle loading and error states
   const fetchApartments = async () => {
     try {
-      // Make GET request to the API endpoint
-      const response = await axios.get("/api/v1/apartment/getAll");
-      console.log("API Response:", response);
-      console.log("Apartments Data:", response.data);
-      console.log("First Apartment:", response.data[0]);
-      console.log("Headers", response.headers);
-      console.log("Headers date", response.headers.date);
-      console.log("Status", response.status);
-      const apartmentsData = response.data;
+      // Use the apartment service instead of direct axios call
+      const apartmentsData = await apartmentService.getAllApartments();
       setApartments(apartmentsData);
       setIsLoading(false);
     } catch (error) {
