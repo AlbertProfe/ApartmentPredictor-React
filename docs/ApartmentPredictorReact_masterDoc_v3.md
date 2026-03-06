@@ -49,24 +49,40 @@ The final product integrates geospatial visualization with interactive maps, con
 ## Project Structure
 
 ```textile
+[Fri Mar 06 10:50:41] albert@albert-VirtualBox:~/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src (master)
+$ tree
+.
+├── apartment
+│   ├── ApartmentDetail.jsx
+│   ├── ApartmentItem.jsx
+│   ├── Apartment.jsx
+│   ├── ApartmentListContainer.jsx
+│   └── ApartmentList.jsx
+├── App.css
+├── App.jsx
+├── assets
+│   └── apartmentNewYork.jpg
+├── auth
+├── components
+│   └── ApartmentForm.jsx
+├── data
+│   └── useApartments.jsx
+├── index.css
+├── layout
+├── main.jsx
+├── middleware
+│   └── ApartmentContextAPI.jsx
+├── navigation
+├── themes
+└── pages
+    └── ApartmentPage.jsx
 
+10 directories, 13 files
 ```
 
 **Node/Component tree**: product goal
 
 ![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2-2.png)
-
-### Project structure
-
-New folder tree with new domains: CRUD operations and middleware.
-
-#### Middleware domain
-
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/PROJECT_apartmentPredictorReact-v2.png)
-
-#### CRUD domain
-
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/PROJECT_apartmentPredictorReact-v2-2.png)
 
 ## Data model
 

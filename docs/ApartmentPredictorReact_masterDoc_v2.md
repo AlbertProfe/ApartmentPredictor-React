@@ -468,7 +468,7 @@ The <mark>form</mark> component leverages `useForm` for state management, replac
 Installation: installing <mark>React Hook Form</mark> only takes a single command and you're ready to roll.
 
 ```tex
-npm install react-hook-formCopy
+npm install react-hook-form
 ```
 
 <mark>React Hook Form</mark> eliminates unnecessary re-renders by using **uncontrolled** inputs via `register`. Validation becomes declarative with schema-based validation using `yup` or `zod`. Error handling is streamlined with automatic error message display tied to field validation rules.
@@ -480,6 +480,18 @@ The `form` maintains **dual-purpose functionality**:
 - when `apartment` prop exists, it operates in **UPDATE** mode with pre-populated fields and *PUT* request submission. 
 
 - Without the prop, it functions as **CREATE** form with empty defaults and **POST** request. The `onSuccess` callback triggers parent component refresh, maintaining the existing data flow architecture.
+
+Folder structure for `Aparment` domain:
+
+```tex
+Apartment (Entry-point Parent)
+├── ApartmentForm (Shared Component)
+└── ApartmentList (Business Logic List, handelers)
+    ├── ApartmentForm (External Component)
+    ├── ApartmentDetail (Child)
+    └── ApartmentListContainer (Map Bridge)
+        └── ApartmentItem (Child Rendering Item List)
+```
 
 ## package.json
 
