@@ -1,7 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
+import { useApartmentService } from "../middleware/apartmentServiceHooks";
 
 const ApartmentForm = ({ apartment = null, onSuccess, onCancel }) => {
+  const apartmentService = useApartmentService();
   const [formData, setFormData] = useState({
     price: apartment?.price || "",
     area: apartment?.area || "",
@@ -37,10 +38,10 @@ const ApartmentForm = ({ apartment = null, onSuccess, onCancel }) => {
     try {
       if (apartment) {
         // Update existing apartment
-        await axios.put(`/api/apartment/${apartment.id}`, formData);
+        await apartmentService.updateApartment({ ...formData, id: apartment.id });
       } else {
         // Create new apartment
-        await axios.post("/api/apartment/create", formData);
+        await apartmentService.createApartment(formData);
       }
       onSuccess();
     } catch (err) {
