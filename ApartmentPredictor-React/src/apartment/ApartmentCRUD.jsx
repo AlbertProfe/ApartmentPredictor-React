@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ApartmentForm from "../components/ApartmentForm";
+import ApartmentCreate from "./ApartmentCreate";
 import ApartmentList from "./ApartmentList";
 
-const Apartment = () => {
+const ApartmentCRUD = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -26,7 +26,7 @@ const Apartment = () => {
       {showCreateForm && (
         <div className="card create-form-container">
           <h2>Create New Apartment</h2>
-          <ApartmentForm 
+          <ApartmentCreate 
             onSuccess={handleCreateSuccess}
             onCancel={() => setShowCreateForm(false)}
           />
@@ -38,4 +38,4 @@ const Apartment = () => {
   );
 };
 
-export default Apartment;
+export default ApartmentCRUD;

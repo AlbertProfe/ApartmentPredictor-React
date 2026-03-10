@@ -1,70 +1,12 @@
-import { useState } from "react";
-import { useApartmentService } from "../middleware/apartmentServiceHooks";
-
-const ApartmentForm = ({ apartment = null, onSuccess, onCancel }) => {
-  const apartmentService = useApartmentService();
-  const [formData, setFormData] = useState({
-    price: apartment?.price || "",
-    area: apartment?.area || "",
-    bedrooms: apartment?.bedrooms || "",
-    bathrooms: apartment?.bathrooms || "",
-    stories: apartment?.stories || "",
-    mainroad: apartment?.mainroad === "yes" || false,
-    parking: apartment?.parking === 1 || false,
-    guestroom: apartment?.guestroom === "yes" || false,
-    basement: apartment?.basement === "yes" || false,
-    hotwaterheating: apartment?.hotwaterheating === "yes" || false,
-    airconditioning: apartment?.airconditioning === "yes" || false,
-    prefarea: apartment?.prefarea === "yes" || false,
-    furnishingstatus: apartment?.furnishingstatus || "unfurnished"
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
-
-    try {
-      // Transform form data to match backend expectations
-      const transformedData = {
-        ...formData,
-        // Convert parking from boolean to integer (0 or 1)
-        parking: formData.parking ? 1 : 0,
-        // Convert other boolean fields to "yes"/"no" strings
-        mainroad: formData.mainroad ? "yes" : "no",
-        guestroom: formData.guestroom ? "yes" : "no",
-        basement: formData.basement ? "yes" : "no",
-        hotwaterheating: formData.hotwaterheating ? "yes" : "no",
-        airconditioning: formData.airconditioning ? "yes" : "no",
-        prefarea: formData.prefarea ? "yes" : "no"
-      };
-
-      if (apartment) {
-        // Update existing apartment
-        await apartmentService.updateApartment({ ...transformedData, id: apartment.id });
-      } else {
-        // Create new apartment
-        await apartmentService.createApartment(transformedData);
-      }
-      onSuccess();
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to save apartment");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+const ApartmentForm = ({ 
+  formData, 
+  handleChange, 
+  handleSubmit, 
+  isLoading, 
+  error, 
+  onCancel, 
+  submitText 
+}) => {
   return (
     <form onSubmit={handleSubmit} className="apartment-form">
       {error && <div className="error-message">{error}</div>}
@@ -216,7 +158,7 @@ const ApartmentForm = ({ apartment = null, onSuccess, onCancel }) => {
           Cancel
         </button>
         <button type="submit" disabled={isLoading} className="submit-btn">
-          {isLoading ? "Saving..." : apartment ? "Update" : "Create"}
+          {isLoading ? "Saving..." : submitText}
         </button>
       </div>
     </form>

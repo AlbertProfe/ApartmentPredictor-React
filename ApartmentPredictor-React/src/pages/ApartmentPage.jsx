@@ -1,7 +1,7 @@
-import Apartment from "../apartment/Apartment";
+import ApartmentCRUD from "../apartment/ApartmentCRUD";
 
 const ApartmentPage = () => {
-  return <Apartment />;
+  return <ApartmentCRUD />;
 };
 
 export default ApartmentPage;
