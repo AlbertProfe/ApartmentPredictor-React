@@ -1,23 +1,18 @@
 // src/apartment/ApartmentList.jsx
 import { useState } from "react";
 import { useApartments } from "../data/useApartments";
-import { useApartmentService } from "../middleware/apartmentServiceHooks";
 import ApartmentUpdate from "./ApartmentUpdate";
 import ApartmentListContainer from "./ApartmentListContainer";
 import ApartmentDetail from "./ApartmentDetail";
 
-const ApartmentList = ({ refreshTrigger, onUpdateSubmit }) => {
+const ApartmentList = ({ refreshTrigger, onUpdateSubmit, onDelete, isDeleting }) => {
   // Use the custom hook to get apartments data and states
-  const { apartments, isLoading, isAxiosError, refetch } = useApartments(refreshTrigger);
-  
-  // Use the apartment service for API calls
-  const apartmentService = useApartmentService();
+  const { apartments, isLoading, isAxiosError } = useApartments(refreshTrigger);
   
   // View state management
   const [selectedApartment, setSelectedApartment] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   // Render loading state
   if (isLoading) {
@@ -41,28 +36,6 @@ const ApartmentList = ({ refreshTrigger, onUpdateSubmit }) => {
     );
   }
 
-  const handleDelete = async (apartmentId) => {
-    if (!window.confirm("Are you sure you want to delete this apartment?")) {
-      return;
-    }
-
-    setIsDeleting(true);
-    try {
-      await apartmentService.deleteApartment(apartmentId);
-      refetch();
-    } catch (error) {
-      console.error("Error deleting apartment:", error);
-      if (error.response?.status === 500) {
-        alert("Failed to delete apartment: Database constraint violation. Please contact administrator.");
-      } else if (error.response?.status === 404) {
-        alert("Apartment not found or already deleted.");
-      } else {
-        alert("Failed to delete apartment. Please try again later.");
-      }
-    } finally {
-      setIsDeleting(false);
-    }
-  };
 
   const handleDetail = (apartment) => {
     setSelectedApartment(apartment);
@@ -79,7 +52,6 @@ const ApartmentList = ({ refreshTrigger, onUpdateSubmit }) => {
   const handleFormSuccess = () => {
     setShowUpdateForm(false);
     setSelectedApartment(null);
-    refetch();
   };
 
   const handleCancel = () => {
@@ -118,7 +90,7 @@ const ApartmentList = ({ refreshTrigger, onUpdateSubmit }) => {
         apartments={apartments}
         onDetail={handleDetail}
         onUpdate={handleUpdate}
-        onDelete={handleDelete}
+        onDelete={onDelete}
         isDeleting={isDeleting}
       />
     </>

@@ -9,6 +9,7 @@ const ApartmentCRUD = () => {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleCreateSuccess = () => {
     setShowCreateForm(false);
@@ -62,6 +63,29 @@ const ApartmentCRUD = () => {
     }
   };
 
+  const handleDelete = async (apartmentId) => {
+    if (!window.confirm("Are you sure you want to delete this apartment?")) {
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      await apartmentService.deleteApartment(apartmentId);
+      setRefreshTrigger(prev => prev + 1);
+    } catch (error) {
+      console.error("Error deleting apartment:", error);
+      if (error.response?.status === 500) {
+        alert("Failed to delete apartment: Database constraint violation. Please contact administrator.");
+      } else if (error.response?.status === 404) {
+        alert("Apartment not found or already deleted.");
+      } else {
+        alert("Failed to delete apartment. Please try again later.");
+      }
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="apartment-container">
       <div className="apartment-header">
@@ -87,7 +111,7 @@ const ApartmentCRUD = () => {
         </div>
       )}
       
-      <ApartmentList refreshTrigger={refreshTrigger} onUpdateSubmit={handleUpdateSubmit} />
+      <ApartmentList refreshTrigger={refreshTrigger} onUpdateSubmit={handleUpdateSubmit} onDelete={handleDelete} isDeleting={isDeleting} />
     </div>
   );
 };
