@@ -102,6 +102,10 @@ New folder tree with new domains: CRUD operations and middleware.
 
 ![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/PROJECT_apartmentPredictorReact-v2-2.png)
 
+#### v2
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/PROJECT_apartmentPredictorReact-v2-4.png)
+
 ## Data model
 
 DATA REST <mark>endpoint</mark>
@@ -456,24 +460,13 @@ The <mark>migration</mark> involved:
 
 ## CRUD Apartment
 
-- [GitHub - AlbertProfe/ApartmentPredictor-React at v2-crud · GitHub](https://github.com/AlbertProfe/ApartmentPredictor-React/tree/v2-crud)
-- https://www.react-hook-form.com/api/useform/
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-apartmentPage-v2.png)
 
-> To enhance the apartment management system, integrating **React Hook Form** provides superior form handling with reduced re-renders and built-in validation. 
-> 
-> Replace the current `useState`-based form in [ApartmentForm.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/apartment/ApartmentForm.jsx:0:0-0:0) with React Hook Form's `useForm` hook.
+### Initial version
 
-The <mark>form</mark> component leverages `useForm` for state management, replacing manual `formData` state with `register`, [handleSubmit](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/apartment/ApartmentForm.jsx:31:2-50:4), and `reset` functions. For **CREATE** operations, the form initializes with default values, while **UPDATE** operations populate fields using `reset(apartment)` when an existing apartment is passed.
+Initial version: - [GitHub - AlbertProfe/ApartmentPredictor-React at v2-crud · GitHub](https://github.com/AlbertProfe/ApartmentPredictor-React/tree/v2-crud)
 
-Installation: installing <mark>React Hook Form</mark> only takes a single command and you're ready to roll.
-
-```tex
-npm install react-hook-form
-```
-
-<mark>React Hook Form</mark> eliminates unnecessary re-renders by using **uncontrolled** inputs via `register`. Validation becomes declarative with schema-based validation using `yup` or `zod`. Error handling is streamlined with automatic error message display tied to field validation rules.
-
-### CRUD Integration
+CRUD Integration with shared `form`:
 
 The `form` maintains **dual-purpose functionality**: 
 
@@ -493,7 +486,59 @@ Apartment (Entry-point Parent)
         └── ApartmentItem (Child Rendering Item List)
 ```
 
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-apartmentPage-v2.png)
+### CRUD Version decoupled (refactor)
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-apartmentPage-v2-2.png)
+
+Apartment Component Tree Summary:
+
+| Component Name             | Function                                                                                                          | Description                                                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ApartmentCRUD**          | <mark>Entry point</mark> for apartment management, handles CRUD operations, state management, data transformation | Main container component that orchestrates all apartment CRUD operations, manages form visibility, loading states, and data transformation between frontend and backend formats |
+| **ApartmentCreate**        | <mark>Form state management</mark>, **create** form submission handler, renders ApartmentForm                     | Specialized component for creating new apartments with initial form state and create-specific submission logic                                                                  |
+| **ApartmentList**          | <mark>Data fetching</mark> via `useApartments` hook, view state management, renders list/detail/update views      | Manages the apartment list display, handles switching between list view, detail view, and update form, coordinates with useApartments hook                                      |
+| **ApartmentListContainer** | <mark>Render function,</mark> <mark>maps</mark> over apartments array                                             | Simple container component that renders the list of ApartmentItem components, handles the mapping logic                                                                         |
+| **ApartmentItem**          | <mark>Render function</mark>, event handlers for Detail/Update/Delete actions                                     | Individual apartment card component that displays apartment information and provides action buttons for CRUD operations                                                         |
+| **ApartmentUpdate**        | <mark>Form state management</mark> (converts backend data to frontend format), **update** form submission handler | Specialized component for updating existing apartments, handles data conversion from backend format to frontend boolean values                                                  |
+| **ApartmentDetail**        | <mark>Modal view rendering,</mark> edit mode toggle, detailed information display                                 | Modal component that shows comprehensive apartment details with inline editing capability, manages edit/view states                                                             |
+
+## Key Architecture Patterns:
+
+1. **Separation of Concerns**: Each component has a single responsibility (CRUD operations, rendering, state management)
+2. **Data Flow**: Parent components pass handlers down, child components call them with data
+3. **State Management**: Local state for form data, parent state for view management and loading states
+4. **Data Transformation**: Centralized in ApartmentCRUD with component-specific conversions in create/update components
+5. **Reusable Components**: ApartmentForm is shared between create and update operations
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-apartmentPage-v2-3.png)
+
+### Next versions
+
+We need to improve functionalty with:
+
+- <mark>useForm</mark>,
+
+- a <mark>reducer</mark> with all handlers
+
+- <mark>context</mark> to avoid `prop drilling`
+
+#### useForm
+
+- https://www.react-hook-form.com/api/useform/
+
+> To enhance the apartment management system, integrating **React Hook Form** provides superior form handling with reduced re-renders and built-in validation. 
+> 
+> Replace the current `useState`-based form in [ApartmentForm.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/apartment/ApartmentForm.jsx:0:0-0:0) with React Hook Form's `useForm` hook.
+
+The <mark>form</mark> component leverages `useForm` for state management, replacing manual `formData` state with `register`, [handleSubmit](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/apartment/ApartmentForm.jsx:31:2-50:4), and `reset` functions. For **CREATE** operations, the form initializes with default values, while **UPDATE** operations populate fields using `reset(apartment)` when an existing apartment is passed.
+
+Installation: installing <mark>React Hook Form</mark> only takes a single command and you're ready to roll.
+
+```tex
+npm install react-hook-form
+```
+
+<mark>React Hook Form</mark> eliminates unnecessary re-renders by using **uncontrolled** inputs via `register`. Validation becomes declarative with schema-based validation using `yup` or `zod`. Error handling is streamlined with automatic error message display tied to field validation rules.
 
 ## AWS S3
 
