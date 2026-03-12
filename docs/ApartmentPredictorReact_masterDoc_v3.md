@@ -182,6 +182,76 @@ DATA REST <mark>endpoint</mark>
 
 ## React MUI
 
+todo (how TO install MUI)
+
+## MUI Drawer Navigation
+
+Let's create a Material-UI drawer navigation system with <mark>React Router</mark> for the Apartment Predictor application.
+
+> The implementation provides a modern, user-friendly navigation experience while maintaining clean, maintainable code structure.
+
+**Step-by-Step Implementation**
+
+**1. Navigation Structure Setup**
+
+- Create [src/navigation/](cci:9://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/navigation:0:0-0:0) directory
+- Build [SideBar.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/navigation/SideBar.jsx:0:0-0:0) - MUI Drawer component with navigation list
+- Build [NavigationList.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/navigation/NavigationList.jsx:0:0-0:0) - Menu items with React Router links
+
+**2. Page Components**
+
+- Create [src/pages/HomePage.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/pages/HomePage.jsx:0:0-0:0) - <mark>Landing</mark> page with apartment image and welcome content
+- Use existing [src/pages/ApartmentPage.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/pages/ApartmentPage.jsx:0:0-0:0) - `Apartment` management interface
+
+**3. React Router Integration**
+
+- Update [src/App.jsx](cci:7://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/App.jsx:0:0-0:0) with `BrowserRouter`, `Routes`, and `Route` components
+- Configure two main routes:
+  - `/` → `HomePage`
+  - `/apartments` → `ApartmentPage`
+
+**4. Drawer Functionality**
+
+- Add <mark>hamburger</mark> menu button with fixed positioning (top-left corner)
+  - <mark>toggle</mark> functionality for opening/closing drawer
+  - Integrate drawer close when `navigation` item is selected
+
+**5. Navigation Menu Items**
+
+- `Home` - Links to `/` with HomeIcon
+- `Apartments` - Links to `/apartments` with ApartmentIcon
+
+
+
+**App.jsx Structure**
+
+```jsx
+<BrowserRouter>
+  <ApartmentServiceProvider>
+    <div style={containerStyle}>
+      <IconButton style={buttonStyle}> // Fixed hamburger
+      <SideBar open={drawerOpen} toggleDrawer={toggleDrawer} />
+      <main style={mainStyle}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/apartments" element={<ApartmentPage />} />
+        </Routes>
+      </main>
+    </div>
+  </ApartmentServiceProvider>
+</BrowserRouter>
+```
+
+### Navigation Flow
+
+1. User clicks hamburger menu (top-left corner)
+2. Drawer slides open from left
+3. User selects navigation item
+4. Drawer closes and route changes
+5. New page renders in main content area
+
+
+
 ## package.json
 
 ### Dependencies Overview
@@ -215,9 +285,14 @@ DATA REST <mark>endpoint</mark>
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "axios": "^1.13.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -243,3 +318,4 @@ DATA REST <mark>endpoint</mark>
   - https://vite.dev/ / [Getting Started | Vite](https://vite.dev/guide/)
   - `npm create vite@latest`
 - `axios` library
+- <mark>MUI</mark> components library
