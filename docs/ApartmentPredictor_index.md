@@ -12,15 +12,15 @@
 
 ### To evaluate order
 
-**Version 4** achieves production readiness with **AWS Cognito** authentication, JWT tokens, protected routes, and login/register pages.
+**Version** achieves production readiness with **AWS Cognito** authentication, JWT tokens, protected routes, and login/register pages.
 
-**Version 5** introduces business value via **Stripe** payments: frontend checkout flows, backend session creation, payment intents, and webhooks to manage premium access.
+**Version** introduces business value via **Stripe** payments: frontend checkout flows, backend session creation, payment intents, and webhooks to manage premium access.
 
-**Version 6** layers intelligence: an **AI Predictor** page using Java ML libraries (Smile/Weka regression, Deeplearning4j/Tribuo neural nets) to forecast rent/sale prices via `/api/predict`.
+**Version** layers intelligence: an **AI Predictor** page using Java ML libraries (Smile/Weka regression, Deeplearning4j/Tribuo neural nets) to forecast rent/sale prices via `/api/predict`.
 
-**Version 7** finalizes visualization: **Leaflet** Map page with apartment/school markers and a detailed **Property/Contract** view.
+**Version** finalizes visualization: **Leaflet** Map page with apartment/school markers and a detailed **Property/Contract** view.
 
-This progression mirrors mature real-estate platforms — starting with listings, maturing through management, security, monetization, smart predictions, and spatial/contractual insights — creating a scalable, <mark>user-centric solution.</mark> 
+> This progression mirrors mature real-estate platforms — starting with listings, maturing through management, security, monetization, smart predictions, and spatial/contractual insights — creating a scalable, <mark>user-centric solution.</mark> 
 
 ## Component tree
 
@@ -37,6 +37,7 @@ Quick Evolution Summary
 - **v3** → UI/UX jump: professional look + shared global state
   - [ApartmentPredictor-React/docs/ApartmentPredictorReact_masterDoc_v3](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/ApartmentPredictorReact_masterDoc_v3.md)
 - **v4** → Reviews Create/Update and stars at Apartment Card dynamic route
+  - [ApartmentPredictor-React/docs/ApartmentPredictorReact_masterDoc_v4](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/master/docs/ApartmentPredictorReact_masterDoc_v4.md)
 - **v5** → Contractual visualization: detailed property/contract views
 - **v6** → Spatial visualization: maps views
 - **v7** → Intelligence layer: AI prediction (Java-based ML)
@@ -54,10 +55,10 @@ Here is the original 8-version evolution table **split into two** focused parts 
 | **1**   | Simple read-only apartments view      | `useEffect` + **axios** fetching apartments list from REST API (coupled logic)<br>→ Later refactor: move fetch to custom hook / service (decoupled) | Minimal REST endpoint: `GET /api/apartments`                                                                                                            |
 | **2**   | Full Apartment CRUD + rich relations  | List → full **CRUD** forms<br>Display relations: Schools, Property Contract, Reviews, Owners, Reviewers                                             | Full **CRUD** endpoints for Apartment + related entities<br>JPA entities & repositories for relations (OneToMany/ManyToMany)                            |
 | **3**   | Professional UI + global shared state | Introduce **MUI** (Material-UI)<br>**Drawer** (navigation) for all pages<br>**useContext** for: user data, apartments list, theme (light/dark)      | No major change (still serves full data)                                                                                                                |
-| **4**   | Secure user authentication            | Login / Register pages<br>Protected routes (private route wrapper)<br>Store token in context / localStorage                                         | Integrate **AWS Cognito** (via Amplify or direct SDK)<br>JWT validation filter / security config                                                        |
-| **5**   | Monetization via payments             | Payment form / checkout page<br>Handle Stripe session creation & redirect                                                                           | **Stripe API** integration: create payment intent / session endpoint<br>Webhook for payment success → update DB (e.g. premium property access)          |
-| **6**   | AI-powered price / demand predictor   | New page / section: **Predictor**<br>Input form → show regression / prediction result                                                               | ML service layer: Java regression (Smile, Weka), simple ANN (Deeplearning4j / Tribuo)<br>Endpoint `/api/predict` (features → predicted rent/sale price) |
-| **7**   | Geospatial + contract visualization   | **Map** page with **Leaflet** → markers for apartments & schools<br>**Property** page for detailed contract view                                    | Possible geo-indexing (if Postgres+PostGIS) or simple lat/lng filtering                                                                                 |
+| **x**   | Secure user authentication            | Login / Register pages<br>Protected routes (private route wrapper)<br>Store token in context / localStorage                                         | Integrate **AWS Cognito** (via Amplify or direct SDK)<br>JWT validation filter / security config                                                        |
+| **x**   | Monetization via payments             | Payment form / checkout page<br>Handle Stripe session creation & redirect                                                                           | **Stripe API** integration: create payment intent / session endpoint<br>Webhook for payment success → update DB (e.g. premium property access)          |
+| **x**   | AI-powered price / demand predictor   | New page / section: **Predictor**<br>Input form → show regression / prediction result                                                               | ML service layer: Java regression (Smile, Weka), simple ANN (Deeplearning4j / Tribuo)<br>Endpoint `/api/predict` (features → predicted rent/sale price) |
+| **x**   | Geospatial + contract visualization   | **Map** page with **Leaflet** → markers for apartments & schools<br>**Property** page for detailed contract view                                    | Possible geo-indexing (if Postgres+PostGIS) or simple lat/lng filtering                                                                                 |
 
 ### Table 2 – Cross-Cutting Concerns & Polish
 
