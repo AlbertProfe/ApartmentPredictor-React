@@ -16,7 +16,7 @@ The `drawer` will slide in/out with smooth animations, include active route high
 
 > The **ApartmentPredictor** project aims to build a modern, intelligent real-estate platform that evolves from a simple apartment listings viewer into a comprehensive property management and prediction system. I
 
-ts goal is to provide users with a seamless experience to browse, manage, and analyze real-estate data through a polished `React` frontend and a robust `Spring Boot` backend. 
+Its goal is to provide users with a seamless experience to browse, manage, and analyze real-estate data through a polished `React` frontend and a robust `Spring Boot` backend. 
 
 As the platform grows, it introduces secure `AWS Cognito authentication`, `Stripe`-powered monetization, and AI-driven predictive analytics for rent and sale pricing. 
 
@@ -91,7 +91,11 @@ $ tree
 
 **Node/Component tree**: product goal
 
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v3.png)
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v3-nav.png)
+
+**Project structure**
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/PROJECT_apartmentPredictorReact-v3.png)
 
 ## Data model
 
@@ -221,7 +225,70 @@ Let's create a Material-UI drawer navigation system with <mark>React Router</mar
 - `Home` - Links to `/` with HomeIcon
 - `Apartments` - Links to `/apartments` with ApartmentIcon
 
+## Theming
 
+to do (not in this version)
+
+## Code
+
+**NavigationList.jsx**
+
+```jsx
+function NavigationList({ toggleDrawer }) {
+  const menuItems = [
+    { text: "Home", icon: <HomeIcon />, path: "/" },
+    { text: "Apartments", icon: <ApartmentIcon />, path: "/apartments" },
+  ];
+
+  return (
+    <List>
+      {menuItems.map((item) => (
+        <ListItem key={item.text} disablePadding>
+          <ListItemButton
+            component={Link}
+            to={item.path}
+            onClick={toggleDrawer(false)}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
+
+export default NavigationList;
+```
+
+**SideBar.jsx**
+
+```jsx
+import React from "react";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import NavigationList from "./NavigationList";
+
+function SideBar({ open, toggleDrawer }) {
+  return (
+    <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+      <div style={{ padding: '16px' }}>
+        <Typography variant="h6">
+          Navigation
+        </Typography>
+        <Divider />
+
+        <NavigationList toggleDrawer={toggleDrawer} />
+
+        <Divider />
+      </div>
+    </Drawer>
+  );
+}
+
+export default SideBar;
+```
 
 **App.jsx Structure**
 
@@ -244,13 +311,11 @@ Let's create a Material-UI drawer navigation system with <mark>React Router</mar
 
 ### Navigation Flow
 
-1. User clicks hamburger menu (top-left corner)
-2. Drawer slides open from left
+1. User clicks <mark>hamburger</mark> menu (top-left corner)
+2. <mark>Drawer</mark> slides open from left
 3. User selects navigation item
-4. Drawer closes and route changes
-5. New page renders in main content area
-
-
+4. <mark>Drawer</mark> closes and route changes
+5. <mark>New page renders</mark> in main content area
 
 ## package.json
 
@@ -261,6 +326,7 @@ Let's create a Material-UI drawer navigation system with <mark>React Router</mar
 - axios (^1.13.2): HTTP client for making API requests to fetch apartment data
 - `react` (^19.2.0): Core React library for building UI components
 - `react-dom` (^19.2.0): Renders React components to the DOM
+- `@mui` dependendencies
 
 **Development Dependencies:**
 

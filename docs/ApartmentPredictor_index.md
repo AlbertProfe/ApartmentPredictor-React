@@ -4,28 +4,6 @@
 
 > The **ApartmentPredictor** application evolves through **sprints (seven incremental versions)**, building <mark>from a minimal proof-of-concept into a full-featured real-estate platform</mark> with modern UX, security, monetization, AI, and geospatial capabilities.
 
-**Version 1** delivers a simple read-only apartments list: React frontend fetches data via **axios** + **useEffect** from a basic Spring Boot REST endpoint (`GET /api/apartments`), starting coupled then refactored to decoupled services/hooks.
-
-**Version 2** expands the backend into a rich domain model with full **CRUD** for apartments and relations (Schools, Property Contracts, Reviews, Owners, Reviewers), while frontend gains detailed forms and relational views.
-
-**Version 3** brings professional polish: **Material-UI** components, persistent **Drawer** navigation, and **React Context** for shared global state (apartments list, user profile, light/dark theme).
-
-### To evaluate order
-
-**Version** achieves production readiness with **AWS Cognito** authentication, JWT tokens, protected routes, and login/register pages.
-
-**Version** introduces business value via **Stripe** payments: frontend checkout flows, backend session creation, payment intents, and webhooks to manage premium access.
-
-**Version** layers intelligence: an **AI Predictor** page using Java ML libraries (Smile/Weka regression, Deeplearning4j/Tribuo neural nets) to forecast rent/sale prices via `/api/predict`.
-
-**Version** finalizes visualization: **Leaflet** Map page with apartment/school markers and a detailed **Property/Contract** view.
-
-> This progression mirrors mature real-estate platforms — starting with listings, maturing through management, security, monetization, smart predictions, and spatial/contractual insights — creating a scalable, <mark>user-centric solution.</mark> 
-
-## Component tree
-
-![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2.png)
-
 ## Vesions Updated
 
 Quick Evolution Summary
@@ -44,11 +22,31 @@ Quick Evolution Summary
 - **v8** → Auth Production readiness: real user management & protection
 - **v9** → Business model: payments / monetization
 
+## Component tree
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/diagrams/TREE-ApartmentPredictor_v2.png)
+
 ## Versions detail
 
-Here is the original 8-version evolution table **split into two** focused parts for clearer reading and comparison — especially useful when zooming in on frontend/backend progression separately from cross-cutting concerns (state, security, monetization, AI, UI polish, and specialized pages).
+**Version 1** delivers a simple read-only apartments list: React frontend fetches data via **axios** + **useEffect** from a basic Spring Boot REST endpoint (`GET /api/apartments`), starting coupled then refactored to decoupled services/hooks.
 
-### Table 1 – Core Implementation Progression
+**Version 2** expands the backend into a rich domain model with full **CRUD** for apartments and relations (Schools, Property Contracts, Reviews, Owners, Reviewers), while frontend gains detailed forms and relational views.
+
+**Version 3** brings professional polish: **Material-UI** components, persistent **Drawer** navigation, and **React Context** for shared global state (apartments list, user profile, light/dark theme).
+
+### To evaluate order
+
+**Version** achieves production readiness with **AWS Cognito** authentication, JWT tokens, protected routes, and login/register pages.
+
+**Version** introduces business value via **Stripe** payments: frontend checkout flows, backend session creation, payment intents, and webhooks to manage premium access.
+
+**Version** layers intelligence: an **AI Predictor** page using Java ML libraries (Smile/Weka regression, Deeplearning4j/Tribuo neural nets) to forecast rent/sale prices via `/api/predict`.
+
+**Version** finalizes visualization: **Leaflet** Map page with apartment/school markers and a detailed **Property/Contract** view.
+
+> This progression mirrors mature real-estate platforms — starting with listings, maturing through management, security, monetization, smart predictions, and spatial/contractual insights — creating a scalable, user-centric solution.
+
+### Core Implementation Progression
 
 | Version | Focus / Milestone                     | Frontend (React) Key Changes                                                                                                                        | Backend (Spring Boot) Key Changes                                                                                                                       |
 | ------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,18 +57,6 @@ Here is the original 8-version evolution table **split into two** focused parts 
 | **x**   | Monetization via payments             | Payment form / checkout page<br>Handle Stripe session creation & redirect                                                                           | **Stripe API** integration: create payment intent / session endpoint<br>Webhook for payment success → update DB (e.g. premium property access)          |
 | **x**   | AI-powered price / demand predictor   | New page / section: **Predictor**<br>Input form → show regression / prediction result                                                               | ML service layer: Java regression (Smile, Weka), simple ANN (Deeplearning4j / Tribuo)<br>Endpoint `/api/predict` (features → predicted rent/sale price) |
 | **x**   | Geospatial + contract visualization   | **Map** page with **Leaflet** → markers for apartments & schools<br>**Property** page for detailed contract view                                    | Possible geo-indexing (if Postgres+PostGIS) or simple lat/lng filtering                                                                                 |
-
-### Table 2 – Cross-Cutting Concerns & Polish
-
-| Version | State / Data Management                                              | Authentication & Security                                | Payments                   | AI / Advanced Features                                   | UI / Layout Additions                                                              | Mapping & Extra Pages                                |
-| ------- | -------------------------------------------------------------------- | -------------------------------------------------------- | -------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| **1**   | Local component state (`useState`)                                   | None                                                     | None                       | None                                                     | Basic list or cards (`CardApartment`)                                              | None                                                 |
-| **2**   | Component state + possibly lifting state up                          | Basic optional (later replaced)                          | None                       | None                                                     | Improved layout for details / relations                                            | None                                                 |
-| **3**   | **React Context** → global state for apartments, theme, user profile | None yet                                                 | None                       | None                                                     | **Drawer**, theme switcher, consistent MUI styling across **Home**, **Apartments** | None                                                 |
-| **4**   | Context holds: user object, roles, isAuthenticated                   | **AWS Cognito** (JWT tokens)                             | None                       | None                                                     | Auth forms + protected layout (show/hide based on auth)                            | None                                                 |
-| **5**   | Context / state for payment status                                   | **AWS Cognito**                                          | **Stripe** (card payments) | None                                                     | Payment UI (MUI dialog / page)                                                     | None                                                 |
-| **6**   | Context can cache predictions                                        | **AWS Cognito** + roles (admin/user access to predictor) | **Stripe**                 | **AI Predictor** (regression / basic neural net in Java) | Predictor form + chart/result display                                              | None                                                 |
-| **7**   | Context shares map-related data (apartments + schools)               | **AWS Cognito**                                          | **Stripe**                 | **AI Predictor**                                         | Enhanced **Drawer**, responsive MUI + Leaflet integration                          | **Map LeafLet** page<br>**Property** / Contract page |
 
 ### More
 
