@@ -9,14 +9,16 @@ We'll protect routes/pages so only logged-in users can access them.
 This uses the **low-level** `amazon-cognito-identity-js` library (~6.3.x in 2026) for full control over the login form — no Amplify UI components.
 
 - [GitHub - AlbertProfe/authReactCognitoJS · GitHub](https://github.com/AlbertProfe/authReactCognitoJS)
-
-- [GitHub - AlbertProfe/authReactCognito · GitHub](https://github.com/AlbertProfe/authReactCognito)
-
+- [GitHub - AlbertProfe/authReactCognito · GitHub](https://github.com/AlbertProfe/authReactCognito
 - [GitHub - AlbertProfe/authReactCognitoHosted · GitHub](https://github.com/AlbertProfe/authReactCognitoHosted)
 
 ## Guide step-by-step
 
-Just 3 steps: Configure AWS Cognito > MockUp + Flow > Project structure + PseudoCode
+Just 3 steps: 
+
+1. Configure AWS Cognito
+2. MockUp + Flow
+3. Project structure + PseudoCode
 
 ### 1. Configure AWS Cognito (create User Pool + App Client)
 
@@ -62,7 +64,7 @@ Go to AWS Console → **Cognito** → **User pools** → **Create user pool**
    - **App Client ID**       e.g. `3f4g5h6j7k8l9m0n1o2p3q4r5s6t`
    - **Region**              e.g. `us-east-1`
 
-3. Create a new user (`verificated`) and at web Cognito CLI to invalidate `Foirce Change Password`:
+3. Create a new user (`verified`) and at web Cognito CLI to invalidate `Foirce Change Password`:
 
 ```tex
 aws cognito-idp admin-set-user-password \
@@ -80,7 +82,7 @@ aws cognito-idp admin-set-user-password \
 
 ![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/appends/auth/images/auth-2.png)
 
-That's the minimal custom Cognito login → protected pages setup without registration/signup in the frontend.
+That's the minimal custom `Cognito` login → protected pages setup without registration/signup in the frontend.
 
 ```
 ┌──────────────────────────────┐
@@ -131,6 +133,8 @@ App.jsx
 ```
 
 **Install dependencies**
+
+- [AWS SDK for JavaScript v3](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/)
 
 Install the [oidc-client-ts](https://github.com/authts/oidc-client-ts)  and [react-oidc-context](https://github.com/authts/react-oidc-context)  libraries or the or the AWS SDK for JavaScript v3:
 
