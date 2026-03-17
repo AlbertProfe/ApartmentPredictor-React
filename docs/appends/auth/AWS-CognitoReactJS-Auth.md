@@ -145,7 +145,11 @@ npm install oidc-client-ts react-oidc-context --save
 npm install @aws-sdk/client-cognito-identity-provider
 ```
 
-### 4. Code example (just a draft)
+### 4. Code
+
+#### Example#1: draft
+
+<mark>It is just a draft</mark>
 
 **Create AuthContext.jsx** (recommended structure)
 
@@ -311,4 +315,77 @@ export default function Dashboard() {
     </div>
   );
 }
+```
+
+#### Example#2: AWS sample
+
+```jsx
+// index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { AuthProvider } from "react-oidc-context";
+
+const cognitoAuthConfig = {
+  authority: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_B6ZsT2FGC",
+  client_id: "26unnXXXXXXXXXXXXau6n7",
+  redirect_uri: "<redirect uri>",
+  response_type: "code",
+  scope: "<scopes>",
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// wrap the application with AuthProvider
+root.render(
+  <React.StrictMode>
+    <AuthProvider {...cognitoAuthConfig}>
+      <App />
+    </AuthProvider>
+  </React.StrictMode>
+);
+
+// App.js
+import { useAuth } from "react-oidc-context";
+
+function App() {
+  const auth = useAuth();
+
+  const signOutRedirect = () => {
+    const clientId = "26unnahlf86jXXXXXXXXu6n7";
+    const logoutUri = "<logout uri>";
+    const cognitoDomain = "https://<user pool domain>";
+    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+  };
+
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Encountering error... {auth.error.message}</div>;
+  }
+
+  if (auth.isAuthenticated) {
+    return (
+      <div>
+        <pre> Hello: {auth.user?.profile.email} </pre>
+        <pre> ID Token: {auth.user?.id_token} </pre>
+        <pre> Access Token: {auth.user?.access_token} </pre>
+        <pre> Refresh Token: {auth.user?.refresh_token} </pre>
+
+        <button onClick={() => auth.removeUser()}>Sign out</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <button onClick={() => auth.signinRedirect()}>Sign in</button>
+      <button onClick={() => signOutRedirect()}>Sign out</button>
+    </div>
+  );
+}
+
+export default App;
 ```
