@@ -14,7 +14,11 @@ This uses the **low-level** `amazon-cognito-identity-js` library (~6.3.x in 2026
 
 - [GitHub - AlbertProfe/authReactCognitoHosted · GitHub](https://github.com/AlbertProfe/authReactCognitoHosted)
 
-## 1. Configure AWS Cognito (create User Pool + App Client)
+## Guide step-by-step
+
+Just 3 steps: Configure AWS Cognito > MockUp + Flow > Project structure + PseudoCode
+
+### 1. Configure AWS Cognito (create User Pool + App Client)
 
 Go to AWS Console → **Cognito** → **User pools** → **Create user pool**
 
@@ -46,7 +50,7 @@ Go to AWS Console → **Cognito** → **User pools** → **Create user pool**
 
 - **Advanced settings** — leave defaults
 
-### Create new user
+#### Create new user and verify
 
 <mark>Important post-creation changes:</mark>
 
