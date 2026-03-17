@@ -8,17 +8,17 @@ We'll protect routes/pages so only logged-in users can access them.
 
 This uses the **low-level** `amazon-cognito-identity-js` library (~6.3.x in 2026) for full control over the login form — no Amplify UI components.
 
-- [GitHub - AlbertProfe/authReactCognitoJS · GitHub](https://github.com/AlbertProfe/authReactCognitoJS)
-- [GitHub - AlbertProfe/authReactCognito · GitHub](https://github.com/AlbertProfe/authReactCognito
-- [GitHub - AlbertProfe/authReactCognitoHosted · GitHub](https://github.com/AlbertProfe/authReactCognitoHosted)
+- [AlbertProfe/authReactCognitoJS · GitHub](https://github.com/AlbertProfe/authReactCognitoJS)
+- [AlbertProfe/authReactCognito · GitHub](https://github.com/AlbertProfe/authReactCognito)
+- [AlbertProfe/authReactCognitoHosted · GitHub](https://github.com/AlbertProfe/authReactCognitoHosted)
 
 ## Guide step-by-step
 
 Just 3 steps: 
 
-1. Configure AWS Cognito
-2. MockUp + Flow
-3. Project structure + PseudoCode
+1. Configure `AWS Cognito`
+2. `MockUp` + Flow
+3. `Project structure` + PseudoCode
 
 ### 1. Configure AWS Cognito (create User Pool + App Client)
 
