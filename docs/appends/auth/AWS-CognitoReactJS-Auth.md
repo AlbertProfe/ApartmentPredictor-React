@@ -68,9 +68,13 @@ aws cognito-idp admin-set-user-password \
   --permanent
 ```
 
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/appends/auth/images/auth-aws-1.png)
+
 ### 2. Simple flow, feature & mock-up
 
-> **Goal**: <mark>Custom</mark> login form → on success store tokens → protect routes → show Dashboard / SecretPage only when logged in.
+> **Goal**: Custom login form → on success store tokens → protect routes → show Dashboard / SecretPage only when logged in.
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/appends/auth/images/auth-2.png)
 
 That's the minimal custom Cognito login → protected pages setup without registration/signup in the frontend.
 
@@ -104,7 +108,13 @@ After login → redirect to `/dashboard` (protected page)
 └──────────────────────────────┘
 ```
 
+Complete flow
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/appends/auth/images/auth-flow.png) 
+
 ### 3. Project structure
+
+![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/appends/auth/images/auth-projectStructure.png)
 
 **Architecture (simple context-based auth):**
 
@@ -118,11 +128,13 @@ App.jsx
 
 **Install dependencies**
 
-Install the [oidc-client-ts](https://github.com/authts/oidc-client-ts)  and [react-oidc-context](https://github.com/authts/react-oidc-context)  libraries.
+Install the [oidc-client-ts](https://github.com/authts/oidc-client-ts)  and [react-oidc-context](https://github.com/authts/react-oidc-context)  libraries or the or the AWS SDK for JavaScript v3:
 
 ```bash
+// deprecated
 npm install oidc-client-ts react-oidc-context --save
-# or yarn aoidc-client-ts react-oidc-context --save
+// js v3
+npm install @aws-sdk/client-cognito-identity-provider
 ```
 
 ### 4. Code example (jsut a draft)
