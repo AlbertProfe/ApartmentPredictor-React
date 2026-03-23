@@ -1,7 +1,11 @@
 import SchoolMapView from "../school/SchoolMapView";
+import SchoolCreate from "../school/SchoolCreate";
 
 const SchoolMapPage = () => {
-    return <SchoolMapView />;
+    return <>
+        <SchoolCreate />
+        <SchoolMapView />;
+        </>
 };
 
 export default SchoolMapPage;
