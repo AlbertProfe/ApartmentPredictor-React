@@ -7,6 +7,7 @@ import SideBar from "./navigation/SideBar";
 import HomePage from "./pages/HomePage";
 import ApartmentPage from "./pages/ApartmentPage";
 import ApartmentFilterPage from "./pages/ApartmentFilterPage";
+import SchoolMapPage from "./pages/SchoolMapPage";
 import Reviews from "./review/Reviews";
 import "./App.css";
 import { ApartmentServiceProvider } from "./middleware/apartmentService";
@@ -51,6 +52,7 @@ export default function App() {
               <Route path="/apartments" element={<ApartmentPage />} />
               <Route path="/apartmentFilter" element={<ApartmentFilterPage />} />
               <Route path="/reviews/apartment/:id" element={<Reviews />} />
+              <Route path="/schoolMap" element={<SchoolMapPage />} />
 
             </Routes>
           </main>
