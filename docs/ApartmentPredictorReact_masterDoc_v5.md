@@ -214,6 +214,34 @@ Results populate a `TableContainer` with 13 columns displaying apartment attribu
 
 ### Code
 
+**Sskeleton:**
+
+```jsx
+const ApartmentFilter = () => {
+  // State to hold the filter values
+  const [filters, setFilters] = useState({maxPrice: "", ....});
+  // State to hold the filtered apartments
+  const [filteredApartments, setFilteredApartments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Custom hook to access the apartment service
+  const apartmentService = useApartmentService();
+  const handleFilterChange = (e) => {....};
+  // send filters to middleware apartmentService
+  const applyFilters = async () => {....};
+
+  return (
+      <Filters />
+      {/* Apply Filters Button */}
+      <Button onClick={applyFilters}>Apply Filters</Button>
+      {/* Results Table */}
+      <FilteredApartmentsTable>          
+};
+
+export default ApartmentFilter;
+```
+
 **Pseudocode/skeleton:**
 
 ```jsx
@@ -693,4 +721,4 @@ export default ApartmentFilter;
   - https://vite.dev/ / [Getting Started | Vite](https://vite.dev/guide/)
   - `npm create vite@latest`
 - `axios` library
-- <mark>MUI</mark> components library
+- <mark>MUI</mark> components librar
