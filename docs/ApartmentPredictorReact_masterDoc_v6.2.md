@@ -1,4 +1,4 @@
-# ApartmentPredictor-React masterDoc v6.1
+# ApartmentPredictor-React masterDoc v6.2
 
 ## Summary
 
