@@ -4,9 +4,9 @@
 
 ### Version Goal
 
-Create individual <mark>review pages for each apartment</mark> using the dynamic route `/reviews/apartment/:id`. 
+Create individual <mark>review pages for each apartment</mark> using the <mark>dynamic route</mark> `/reviews/apartment/:id`. 
 
-When users click a "**View Reviews**"` link/button` on an apartment card, navigate to `/reviews/apartment/123` (where 123 is the apartment's ID). The `Reviews` component extracts the ID via `useParams()` and fetches/displays that apartment's specific reviews.
+When users click a "**View Reviews**" `link/button` on an apartment card, navigate to `/reviews/apartment/123` (where 123 is the apartment's ID). The `Reviews` component extracts the ID via `useParams()` and fetches/displays that apartment's specific reviews.
 
 ### Product Goal
 
@@ -217,7 +217,7 @@ This creates URLs like `/reviews/apartment/123`, `/reviews/apartment/456`, etc.,
 
 ## Code
 
-- [ApartmentPredictor-React/src/apartment/ApartmentItem.jsx]((https://github.com/AlbertProfe/ApartmentPredictor-React/blob/35be1221486b07c95b57abb46422b3d45b174fa4/ApartmentPredictor-React/src/apartment/ApartmentItem.jsx)
+- [ApartmentPredictor-React/src/apartment/ApartmentItem.jsx](https://github.com/AlbertProfe/ApartmentPredictor-React/blob/35be1221486b07c95b57abb46422b3d45b174fa4/ApartmentPredictor-React/src/apartment/ApartmentItem.jsx)
 
 ```jsx
 import React from 'react';
