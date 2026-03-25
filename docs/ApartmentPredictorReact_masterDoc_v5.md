@@ -214,6 +214,89 @@ Results populate a `TableContainer` with 13 columns displaying apartment attribu
 
 ### Code
 
+**Pseudocode/skeleton:**
+
+```jsx
+import {Button, ......, } from "@mui/material";
+import React, { useState } from "react";
+import { useApartmentService } from "../../middleware/apartmentServiceHooks";
+
+const ApartmentFilter = () => {
+  // State to hold the filter values
+  const [filters, setFilters] = useState({maxPrice: "", ....});
+
+  // State to hold the filtered apartments
+  const [filteredApartments, setFilteredApartments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Custom hook to access the apartment service
+  const apartmentService = useApartmentService();
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const applyFilters = async () => {
+      // send filters to middleware apartmentService
+      const data = await apartmentService.filterApartments(filters); 
+  };
+
+  return (
+    <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
+      {/* Filters Section */}
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>
+       Filter (Full) Apartments</Typography>
+       {/* Filters render with all options */}
+      <div>
+         {/* ...... */}
+        <TextField      
+          value={filters.textOnReview}
+          onChange={handleFilterChange}
+        />
+        {/* ...... */}
+      </div>
+
+      {/* Apply Filters Button */}
+      <Button onClick={applyFilters}>
+        {loading ? <CircularProgress size={24} /> : "Apply Filters"}
+      </Button>
+
+      {/* Error Message */}
+      {error && (
+        <Typography color="error" style={{ marginBottom: "20px" }}>
+          Error: {error}
+        </Typography>
+      )}
+
+      {/* Results Table */}
+      <br />
+      <Typography color="success" style={{ marginBottom: "20px" }}>
+        There are {filteredApartments.length} results.
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table>
+           {/* ...... */}
+          <TableBody>
+            {filteredApartments.map((apartment) => (
+                  <TableRow key={apartment.id}>
+                    <TableCell>{apartment.id}</TableCell>
+                     {/* ...... */}
+                  </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+};
+
+export default ApartmentFilter;
+```
+
+**Coupled component:**
+
 ```jsx
 import {
   Button,
