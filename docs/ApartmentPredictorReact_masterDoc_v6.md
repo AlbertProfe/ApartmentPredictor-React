@@ -108,6 +108,29 @@ $ tree
 14 directories, 29 files
 ```
 
+New domain `school`:
+
+```textile
+$ tree
+.
+├── apartment
+...
+├── navigation
+│   ├── NavigationList.jsx
+│   └── SideBar.jsx
+├── pages
+│   ├── ....
+│   └── SchoolMapPage.jsx
+├── review
+│   └── ...
+└── school
+    ├── SchoolCreate.jsx
+    ├── SchoolMap.jsx
+    └── SchoolMapView.jsx
+
+14 directories, 29 files
+```
+
 ## DATA
 
 - [apartmentPredictorCRUD](https://documenter.getpostman.com/view/7473960/2sBXVeFs8L)
@@ -193,9 +216,9 @@ $ tree
 }
 ```
 
-## Grid
+## MUI Grid
 
-The [SchoolMap](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/school/SchoolMap.jsx:5:0-16:2) component creates a **responsive two-column layout** using Material-UI's Grid system.
+The [SchoolMap](cci:1://file:///home/albert/MyProjects/Sandbox/ApartmentPredictorProject-React/ApartmentPredictor-React/src/school/SchoolMap.jsx:5:0-16:2) component creates a **responsive two-column layout** using <mark>Material-UI's Grid system.</mark>
 
 Structure Breakdown
 
@@ -214,14 +237,14 @@ Structure Breakdown
 **Right Column: `<Grid size={{ xs: 12, md: 6 }}>`**
 
 - Same responsive sizing as left column
-- Contains `<SchoolMapView />` - the Leaflet map visualization
+- Contains `<SchoolMapView />` - the `Leaflet` <mark>map</mark> visualization
 
 ### Responsive Behavior
 
 - **Mobile (xs)**: Both components stack vertically, each taking 100% width
 - **Desktop (md+)**: Components sit side-by-side, each taking 50% width with spacing between them
 
-This creates a classic **form-beside-map** pattern where users can input school data on the left and immediately see visual feedback on the map to the right, with automatic mobile optimization.
+> This creates a classic **form-beside-map** pattern where users can input school data on the left and immediately see visual feedback on the map to the right, with automatic mobile optimization.
 
 ```jsx
 const SchoolMap = () => {
@@ -242,9 +265,11 @@ export default SchoolMap;
 
 ## LeafLet map
 
-- https://leafletjs.com/ / 
+- https://leafletjs.com/ / https://react-leaflet.js.org/
 
-- https://react-leaflet.js.org/
+> <mark>Leaflet</mark> is the leading **open-source JavaScript library for mobile-friendly interactive maps**. Weighing just about 42 KB of JS, it has all the mapping [features](https://leafletjs.com/#features) most developers ever need.
+
+<mark>Leaflet</mark> is designed with *simplicity*, *performance* and *usability* in mind. It works efficiently across all major desktop and mobile platforms, can be extended with lots of [plugins](https://leafletjs.com/plugins.html), has a beautiful, easy to use and [well-documented API](https://leafletjs.com/reference.html "Leaflet API reference") and a simple, readable [source code](https://github.com/Leaflet/Leaflet "Leaflet source code repository on GitHub") that is a joy to [contribute](https://github.com/Leaflet/Leaflet/blob/main/CONTRIBUTING.md "A guide to contributing to Leaflet") to.
 
 ### Leaflet Map Components
 
@@ -309,7 +334,7 @@ const SchoolMapView = () => {
 export default SchoolMapView
 ```
 
-## Screeshots
+## Screeshoots
 
 ![](https://raw.githubusercontent.com/AlbertProfe/ApartmentPredictor-React/refs/heads/master/docs/screenshots/RENDER-map-1.png)
 
