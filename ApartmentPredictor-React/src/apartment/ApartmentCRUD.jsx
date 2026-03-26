@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useApartmentService } from "../middleware/apartmentServiceHooks";
+import { useApartmentData } from "../data/ApartmentDataContext";
 import ApartmentCreate from "./ApartmentCreate";
 import ApartmentList from "./ApartmentList";
 
 const ApartmentCRUD = () => {
   const apartmentService = useApartmentService();
+  const { refetch } = useApartmentData();
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleCreateSuccess = () => {
     setShowCreateForm(false);
-    setRefreshTrigger(prev => prev + 1);
+    refetch();
   };
 
   const transformFormData = (data) => {
@@ -53,7 +54,7 @@ const ApartmentCRUD = () => {
     try {
       const transformedData = transformFormData(formData);
       await apartmentService.updateApartment({ ...transformedData, id: apartmentId });
-      setRefreshTrigger(prev => prev + 1);
+      refetch();
       return true;
     } catch (err) {
       setError(err.response?.data?.message || "Failed to update apartment");
@@ -71,7 +72,7 @@ const ApartmentCRUD = () => {
     setIsDeleting(true);
     try {
       await apartmentService.deleteApartment(apartmentId);
-      setRefreshTrigger(prev => prev + 1);
+      refetch();
     } catch (error) {
       console.error("Error deleting apartment:", error);
       if (error.response?.status === 500) {
@@ -111,7 +112,7 @@ const ApartmentCRUD = () => {
         </div>
       )}
       
-      <ApartmentList refreshTrigger={refreshTrigger} onUpdateSubmit={handleUpdateSubmit} onDelete={handleDelete} isDeleting={isDeleting} />
+      <ApartmentList onUpdateSubmit={handleUpdateSubmit} onDelete={handleDelete} isDeleting={isDeleting} />
     </div>
   );
 };

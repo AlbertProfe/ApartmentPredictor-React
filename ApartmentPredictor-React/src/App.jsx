@@ -11,6 +11,7 @@ import SchoolMapPage from "./pages/SchoolMapPage";
 import Reviews from "./review/Reviews";
 import "./App.css";
 import { ApartmentServiceProvider } from "./middleware/apartmentService";
+import { ApartmentDataProvider } from "./data/ApartmentDataContext";
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -41,23 +42,25 @@ export default function App() {
   return (
     <BrowserRouter>
       <ApartmentServiceProvider>
-        <div style={containerStyle}>
-          <IconButton onClick={toggleDrawer(true)} style={buttonStyle}>
-            <MenuIcon />
-          </IconButton>
-          <SideBar open={drawerOpen} toggleDrawer={toggleDrawer} />
-          
-          <main style={mainStyle}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/apartments" element={<ApartmentPage />} />
-              <Route path="/apartmentFilter" element={<ApartmentFilterPage />} />
-              <Route path="/reviews/apartment/:id" element={<Reviews />} />
-              <Route path="/schoolMap" element={<SchoolMapPage />} />
+        <ApartmentDataProvider>
+          <div style={containerStyle}>
+            <IconButton onClick={toggleDrawer(true)} style={buttonStyle}>
+              <MenuIcon />
+            </IconButton>
+            <SideBar open={drawerOpen} toggleDrawer={toggleDrawer} />
+            
+            <main style={mainStyle}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/apartments" element={<ApartmentPage />} />
+                <Route path="/apartmentFilter" element={<ApartmentFilterPage />} />
+                <Route path="/reviews/apartment/:id" element={<Reviews />} />
+                <Route path="/schoolMap" element={<SchoolMapPage />} />
 
-            </Routes>
-          </main>
-        </div>
+              </Routes>
+            </main>
+          </div>
+        </ApartmentDataProvider>
       </ApartmentServiceProvider>
     </BrowserRouter>
   );
