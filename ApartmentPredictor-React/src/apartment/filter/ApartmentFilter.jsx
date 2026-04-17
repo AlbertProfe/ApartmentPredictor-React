@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useApartmentService } from "../../middleware/apartmentServiceHooks";
+import { useApartmentService } from "../../middleware/apartment/apartmentServiceHooks";
 
 const ApartmentFilter = () => {
   // State to hold the filter values

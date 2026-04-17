@@ -1,13 +1,13 @@
 // src/apartment/ApartmentList.jsx
 import { useState } from "react";
-import { useApartments } from "../data/useApartments";
+import { useApartmentData } from "../data/ApartmentDataContext";
 import ApartmentUpdate from "./ApartmentUpdate";
 import ApartmentListContainer from "./ApartmentListContainer";
 import ApartmentDetail from "./ApartmentDetail";
 
-const ApartmentList = ({ refreshTrigger, onUpdateSubmit, onDelete, isDeleting }) => {
+const ApartmentList = ({ onUpdateSubmit, onDelete, isDeleting }) => {
   // Use the custom hook to get apartments data and states
-  const { apartments, isLoading, isAxiosError } = useApartments(refreshTrigger);
+  const { apartments, isLoading, isAxiosError } = useApartmentData();
   
   // View state management
   const [selectedApartment, setSelectedApartment] = useState(null);

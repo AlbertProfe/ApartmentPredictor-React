@@ -1,3 +1,7 @@
+// DEPRECATED - Use ApartmentDataContext instead
+// This file is kept for reference only
+// Use: import { useApartmentData } from '../data/ApartmentDataContext';
+
 import { useEffect, useState } from "react";
 import { useApartmentService } from "../middleware/apartmentServiceHooks";
 

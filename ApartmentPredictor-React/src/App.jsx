@@ -10,7 +10,7 @@ import ApartmentFilterPage from "./pages/ApartmentFilterPage";
 import SchoolMapPage from "./pages/SchoolMapPage";
 import Reviews from "./review/Reviews";
 import "./App.css";
-import { ApartmentServiceProvider } from "./middleware/apartmentService";
+import { AppProviders } from "./providers/AppProviders";
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function App() {
   
   return (
     <BrowserRouter>
-      <ApartmentServiceProvider>
+      <AppProviders>
         <div style={containerStyle}>
           <IconButton onClick={toggleDrawer(true)} style={buttonStyle}>
             <MenuIcon />
@@ -54,11 +54,10 @@ export default function App() {
               <Route path="/apartmentFilter" element={<ApartmentFilterPage />} />
               <Route path="/reviews/apartment/:id" element={<Reviews />} />
               <Route path="/schoolMap" element={<SchoolMapPage />} />
-
             </Routes>
           </main>
         </div>
-      </ApartmentServiceProvider>
+      </AppProviders>
     </BrowserRouter>
   );
 }
