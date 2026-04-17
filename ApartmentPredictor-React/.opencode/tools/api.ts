@@ -18,7 +18,7 @@ const ENDPOINTS = {
   school: {
     base: `${BASE_URL}/school`,
     getAll: `${BASE_URL}/school/getAll`,
-    getById: (id) => `${BASE_URL}/school/${id}`,
+    getById: (id) => `${BASE_URL}/school/getById?id=${id}`,
     create: `${BASE_URL}/school/create`,
     update: `${BASE_URL}/school/update`,
     deleteById: (id) => `${BASE_URL}/school/deleteById?id=${id}`,
@@ -27,7 +27,7 @@ const ENDPOINTS = {
   reviewer: {
     base: `${BASE_URL}/reviewer`,
     getAll: `${BASE_URL}/reviewer/getAll`,
-    getById: (id) => `${BASE_URL}/reviewer/${id}`,
+    getById: (id) => `${BASE_URL}/reviewer/getById?id=${id}`,
     create: `${BASE_URL}/reviewer/create`,
     update: `${BASE_URL}/reviewer/update`,
     deleteById: (id) => `${BASE_URL}/reviewer/deleteById?id=${id}`,
@@ -35,7 +35,7 @@ const ENDPOINTS = {
   owner: {
     base: `${BASE_URL}/owner`,
     getAll: `${BASE_URL}/owner/getAll`,
-    getById: (id) => `${BASE_URL}/owner/${id}`,
+    getById: (id) => `${BASE_URL}/owner/getById?id=${id}`,
     create: `${BASE_URL}/owner/create`,
     update: `${BASE_URL}/owner/update`,
     deleteById: (id) => `${BASE_URL}/owner/deleteById?id=${id}`,
