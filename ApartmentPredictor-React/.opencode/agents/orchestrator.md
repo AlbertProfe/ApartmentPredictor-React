@@ -1,6 +1,6 @@
 ---
 description: Primary agent that orchestrates the development workflow.
-mode: agent
+mode: primary
 model: opencode/claude-sonnet-4-20250514
 temperature: 0.3
 permission:
